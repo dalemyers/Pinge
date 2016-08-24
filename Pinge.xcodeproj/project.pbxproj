@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DDA1D6DC1D6E3A0B0025AD63 /* PNGChunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA1D6DB1D6E3A0B0025AD63 /* PNGChunk.swift */; };
+		DDA1D6DE1D6E3AEC0025AD63 /* IHDRChunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA1D6DD1D6E3AEC0025AD63 /* IHDRChunk.swift */; };
 		DDEFF2891D6D8D8F0028BC86 /* Pinge.h in Headers */ = {isa = PBXBuildFile; fileRef = DDEFF2881D6D8D8F0028BC86 /* Pinge.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DDEFF2901D6D8D8F0028BC86 /* Pinge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDEFF2851D6D8D8F0028BC86 /* Pinge.framework */; };
 		DDEFF2951D6D8D8F0028BC86 /* PingeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDEFF2941D6D8D8F0028BC86 /* PingeTests.swift */; };
@@ -25,6 +27,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DDA1D6DB1D6E3A0B0025AD63 /* PNGChunk.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PNGChunk.swift; sourceTree = "<group>"; };
+		DDA1D6DD1D6E3AEC0025AD63 /* IHDRChunk.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IHDRChunk.swift; sourceTree = "<group>"; };
 		DDEFF2851D6D8D8F0028BC86 /* Pinge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pinge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDEFF2881D6D8D8F0028BC86 /* Pinge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Pinge.h; sourceTree = "<group>"; };
 		DDEFF28A1D6D8D8F0028BC86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -78,6 +82,8 @@
 				DDEFF2881D6D8D8F0028BC86 /* Pinge.h */,
 				DDEFF29F1D6D8E430028BC86 /* Pinge.swift */,
 				DDEFF28A1D6D8D8F0028BC86 /* Info.plist */,
+				DDA1D6DB1D6E3A0B0025AD63 /* PNGChunk.swift */,
+				DDA1D6DD1D6E3AEC0025AD63 /* IHDRChunk.swift */,
 			);
 			path = Pinge;
 			sourceTree = "<group>";
@@ -210,6 +216,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				DDEFF2A01D6D8E430028BC86 /* Pinge.swift in Sources */,
+				DDA1D6DE1D6E3AEC0025AD63 /* IHDRChunk.swift in Sources */,
+				DDA1D6DC1D6E3A0B0025AD63 /* PNGChunk.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,6 +405,7 @@
 				DDEFF29B1D6D8D8F0028BC86 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DDEFF29C1D6D8D8F0028BC86 /* Build configuration list for PBXNativeTarget "PingeTests" */ = {
 			isa = XCConfigurationList;
@@ -405,6 +414,7 @@
 				DDEFF29E1D6D8D8F0028BC86 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
