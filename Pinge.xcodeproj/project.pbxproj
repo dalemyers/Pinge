@@ -10,6 +10,8 @@
 		DDEFF2891D6D8D8F0028BC86 /* Pinge.h in Headers */ = {isa = PBXBuildFile; fileRef = DDEFF2881D6D8D8F0028BC86 /* Pinge.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DDEFF2901D6D8D8F0028BC86 /* Pinge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDEFF2851D6D8D8F0028BC86 /* Pinge.framework */; };
 		DDEFF2951D6D8D8F0028BC86 /* PingeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDEFF2941D6D8D8F0028BC86 /* PingeTests.swift */; };
+		DDEFF2A01D6D8E430028BC86 /* Pinge.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDEFF29F1D6D8E430028BC86 /* Pinge.swift */; };
+		DDEFF2A21D6D917F0028BC86 /* libpng-test.png in Resources */ = {isa = PBXBuildFile; fileRef = DDEFF2A11D6D917F0028BC86 /* libpng-test.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,8 +29,10 @@
 		DDEFF2881D6D8D8F0028BC86 /* Pinge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Pinge.h; sourceTree = "<group>"; };
 		DDEFF28A1D6D8D8F0028BC86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DDEFF28F1D6D8D8F0028BC86 /* PingeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PingeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		DDEFF2941D6D8D8F0028BC86 /* PingeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingeTests.swift; sourceTree = "<group>"; };
+		DDEFF2941D6D8D8F0028BC86 /* PingeTests.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = PingeTests.swift; sourceTree = "<group>"; tabWidth = 4; usesTabs = 1; };
 		DDEFF2961D6D8D8F0028BC86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DDEFF29F1D6D8E430028BC86 /* Pinge.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = Pinge.swift; sourceTree = "<group>"; tabWidth = 4; usesTabs = 1; };
+		DDEFF2A11D6D917F0028BC86 /* libpng-test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "libpng-test.png"; path = "TestImages/libpng-test.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				DDEFF2881D6D8D8F0028BC86 /* Pinge.h */,
+				DDEFF29F1D6D8E430028BC86 /* Pinge.swift */,
 				DDEFF28A1D6D8D8F0028BC86 /* Info.plist */,
 			);
 			path = Pinge;
@@ -80,10 +85,19 @@
 		DDEFF2931D6D8D8F0028BC86 /* PingeTests */ = {
 			isa = PBXGroup;
 			children = (
+				DDEFF2A31D6D91820028BC86 /* Test Images */,
 				DDEFF2941D6D8D8F0028BC86 /* PingeTests.swift */,
 				DDEFF2961D6D8D8F0028BC86 /* Info.plist */,
 			);
 			path = PingeTests;
+			sourceTree = "<group>";
+		};
+		DDEFF2A31D6D91820028BC86 /* Test Images */ = {
+			isa = PBXGroup;
+			children = (
+				DDEFF2A11D6D917F0028BC86 /* libpng-test.png */,
+			);
+			name = "Test Images";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -184,6 +198,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDEFF2A21D6D917F0028BC86 /* libpng-test.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,6 +209,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDEFF2A01D6D8E430028BC86 /* Pinge.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,6 +326,7 @@
 		DDEFF29A1D6D8D8F0028BC86 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -320,12 +337,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.myers.Pinge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		DDEFF29B1D6D8D8F0028BC86 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
