@@ -1,0 +1,393 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DDEFF2891D6D8D8F0028BC86 /* Pinge.h in Headers */ = {isa = PBXBuildFile; fileRef = DDEFF2881D6D8D8F0028BC86 /* Pinge.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DDEFF2901D6D8D8F0028BC86 /* Pinge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDEFF2851D6D8D8F0028BC86 /* Pinge.framework */; };
+		DDEFF2951D6D8D8F0028BC86 /* PingeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDEFF2941D6D8D8F0028BC86 /* PingeTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DDEFF2911D6D8D8F0028BC86 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DDEFF27C1D6D8D8F0028BC86 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DDEFF2841D6D8D8F0028BC86;
+			remoteInfo = Pinge;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		DDEFF2851D6D8D8F0028BC86 /* Pinge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pinge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DDEFF2881D6D8D8F0028BC86 /* Pinge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Pinge.h; sourceTree = "<group>"; };
+		DDEFF28A1D6D8D8F0028BC86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DDEFF28F1D6D8D8F0028BC86 /* PingeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PingeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DDEFF2941D6D8D8F0028BC86 /* PingeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingeTests.swift; sourceTree = "<group>"; };
+		DDEFF2961D6D8D8F0028BC86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DDEFF2811D6D8D8F0028BC86 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DDEFF28C1D6D8D8F0028BC86 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DDEFF2901D6D8D8F0028BC86 /* Pinge.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DDEFF27B1D6D8D8F0028BC86 = {
+			isa = PBXGroup;
+			children = (
+				DDEFF2871D6D8D8F0028BC86 /* Pinge */,
+				DDEFF2931D6D8D8F0028BC86 /* PingeTests */,
+				DDEFF2861D6D8D8F0028BC86 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DDEFF2861D6D8D8F0028BC86 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DDEFF2851D6D8D8F0028BC86 /* Pinge.framework */,
+				DDEFF28F1D6D8D8F0028BC86 /* PingeTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DDEFF2871D6D8D8F0028BC86 /* Pinge */ = {
+			isa = PBXGroup;
+			children = (
+				DDEFF2881D6D8D8F0028BC86 /* Pinge.h */,
+				DDEFF28A1D6D8D8F0028BC86 /* Info.plist */,
+			);
+			path = Pinge;
+			sourceTree = "<group>";
+		};
+		DDEFF2931D6D8D8F0028BC86 /* PingeTests */ = {
+			isa = PBXGroup;
+			children = (
+				DDEFF2941D6D8D8F0028BC86 /* PingeTests.swift */,
+				DDEFF2961D6D8D8F0028BC86 /* Info.plist */,
+			);
+			path = PingeTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		DDEFF2821D6D8D8F0028BC86 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DDEFF2891D6D8D8F0028BC86 /* Pinge.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		DDEFF2841D6D8D8F0028BC86 /* Pinge */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DDEFF2991D6D8D8F0028BC86 /* Build configuration list for PBXNativeTarget "Pinge" */;
+			buildPhases = (
+				DDEFF2801D6D8D8F0028BC86 /* Sources */,
+				DDEFF2811D6D8D8F0028BC86 /* Frameworks */,
+				DDEFF2821D6D8D8F0028BC86 /* Headers */,
+				DDEFF2831D6D8D8F0028BC86 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Pinge;
+			productName = Pinge;
+			productReference = DDEFF2851D6D8D8F0028BC86 /* Pinge.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		DDEFF28E1D6D8D8F0028BC86 /* PingeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DDEFF29C1D6D8D8F0028BC86 /* Build configuration list for PBXNativeTarget "PingeTests" */;
+			buildPhases = (
+				DDEFF28B1D6D8D8F0028BC86 /* Sources */,
+				DDEFF28C1D6D8D8F0028BC86 /* Frameworks */,
+				DDEFF28D1D6D8D8F0028BC86 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DDEFF2921D6D8D8F0028BC86 /* PBXTargetDependency */,
+			);
+			name = PingeTests;
+			productName = PingeTests;
+			productReference = DDEFF28F1D6D8D8F0028BC86 /* PingeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DDEFF27C1D6D8D8F0028BC86 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Dale Myers";
+				TargetAttributes = {
+					DDEFF2841D6D8D8F0028BC86 = {
+						CreatedOnToolsVersion = 7.3;
+					};
+					DDEFF28E1D6D8D8F0028BC86 = {
+						CreatedOnToolsVersion = 7.3;
+					};
+				};
+			};
+			buildConfigurationList = DDEFF27F1D6D8D8F0028BC86 /* Build configuration list for PBXProject "Pinge" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = DDEFF27B1D6D8D8F0028BC86;
+			productRefGroup = DDEFF2861D6D8D8F0028BC86 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DDEFF2841D6D8D8F0028BC86 /* Pinge */,
+				DDEFF28E1D6D8D8F0028BC86 /* PingeTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DDEFF2831D6D8D8F0028BC86 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DDEFF28D1D6D8D8F0028BC86 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DDEFF2801D6D8D8F0028BC86 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DDEFF28B1D6D8D8F0028BC86 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DDEFF2951D6D8D8F0028BC86 /* PingeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DDEFF2921D6D8D8F0028BC86 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DDEFF2841D6D8D8F0028BC86 /* Pinge */;
+			targetProxy = DDEFF2911D6D8D8F0028BC86 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		DDEFF2971D6D8D8F0028BC86 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		DDEFF2981D6D8D8F0028BC86 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		DDEFF29A1D6D8D8F0028BC86 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Pinge/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.myers.Pinge;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		DDEFF29B1D6D8D8F0028BC86 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Pinge/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.myers.Pinge;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		DDEFF29D1D6D8D8F0028BC86 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = PingeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.myers.PingeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		DDEFF29E1D6D8D8F0028BC86 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = PingeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.myers.PingeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DDEFF27F1D6D8D8F0028BC86 /* Build configuration list for PBXProject "Pinge" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DDEFF2971D6D8D8F0028BC86 /* Debug */,
+				DDEFF2981D6D8D8F0028BC86 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DDEFF2991D6D8D8F0028BC86 /* Build configuration list for PBXNativeTarget "Pinge" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DDEFF29A1D6D8D8F0028BC86 /* Debug */,
+				DDEFF29B1D6D8D8F0028BC86 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		DDEFF29C1D6D8D8F0028BC86 /* Build configuration list for PBXNativeTarget "PingeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DDEFF29D1D6D8D8F0028BC86 /* Debug */,
+				DDEFF29E1D6D8D8F0028BC86 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DDEFF27C1D6D8D8F0028BC86 /* Project object */;
+}
