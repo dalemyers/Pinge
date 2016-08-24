@@ -15,15 +15,33 @@ class Pinge {
 
 	private var data: NSData
 
-	private var chunks = [([Byte], [Byte], [Byte])]()
+	private var chunks = [PNGChunk]()
 
 	init?(data: NSData) {
 		self.data = data
-		if !validateHeader() {
+		guard validateHeader() else {
 			return nil
 		}
 
 		readChunks()
+	}
+
+	private func createChunk(chunkID: [Byte], chunkData: [Byte], chunkCRC: [Byte]) {
+		
+		guard let chunkName = String(bytes: chunkID, encoding: NSUTF8StringEncoding) else {
+			return
+		}
+
+		switch chunkName {
+		case "IHDR":
+			guard let chunk = IHDRChunk(identifier: chunkID, data: chunkData, crc: chunkCRC) else {
+				return
+			}
+			chunks.append(chunk)
+		default:
+			print(chunkName)
+		}
+
 	}
 
 	private func readChunks() {
@@ -51,7 +69,7 @@ class Pinge {
 			data.getBytes(&chunkCRC, range: NSMakeRange(offset, 4))
 			offset += 4
 
-			chunks.append((chunkID, chunkData, chunkCRC))
+			createChunk(chunkID, chunkData: chunkData, chunkCRC: chunkCRC)
 		}
 	}
 
