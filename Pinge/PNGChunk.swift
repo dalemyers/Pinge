@@ -12,7 +12,19 @@ public class PNGChunk {
   internal var data: [Byte]
   internal var crc: [Byte]
 
+  public var isAncillary: Bool {
+    return true
+  }
+
   public init?(identifier: [Byte], data: [Byte], crc: [Byte]) {
+    guard identifier.count == 4 else {
+      return nil
+    }
+
+    guard crc.count == 4 else {
+      return nil
+    }
+
     self.identifier = identifier
     self.data = data
     self.crc = crc

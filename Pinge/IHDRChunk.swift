@@ -17,6 +17,10 @@ public class IHDRChunk: PNGChunk {
   public override init?(identifier: [Byte], data: [Byte], crc: [Byte]) {
     super.init(identifier: identifier, data: data, crc: crc)
 
+    guard data.count == 13 else {
+      return nil
+    }
+
     guard validateCRC() else {
       return nil
     }
@@ -28,10 +32,6 @@ public class IHDRChunk: PNGChunk {
 
   private func extractData() -> Bool {
     var offset: Int = 0
-
-    guard data.count == 13 else {
-      return false
-    }
 
     let nsdata = NSData(bytes: &data, length: data.count)
 
