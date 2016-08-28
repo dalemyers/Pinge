@@ -11,6 +11,14 @@ public class PLTEChunk: PNGChunk {
   public override init?(identifier: [Byte], data: [Byte], crc: [Byte]) {
     super.init(identifier: identifier, data: data, crc: crc)
 
+    guard data.count % 3 == 0 else {
+      return nil
+    }
+
+    guard data.count >= 3 && data.count <= (256 * 3) else {
+      return nil
+    }
+
     guard validateCRC() else {
       return nil
     }
@@ -21,14 +29,6 @@ public class PLTEChunk: PNGChunk {
   }
 
   private func extractData() -> Bool {
-
-    guard data.count % 3 == 0 else {
-      return false
-    }
-
-    guard data.count >= 3 && data.count <= (256 * 3) else {
-      return false
-    }
 
     let nsdata = NSData(bytes: &data, length: data.count)
 
