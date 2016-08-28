@@ -17,6 +17,7 @@ class Pinge {
 
 	private var non_required_chunks = [PNGChunk]()
 	private var chunkIHDR: IHDRChunk!
+	private var chunkPLTE: PLTEChunk?
 
 	init?(data: NSData) {
 		self.data = data
@@ -27,6 +28,31 @@ class Pinge {
 		guard readChunks() else {
 			return nil
 		}
+
+		guard validateChunks() else {
+			return nil
+		}
+	}
+
+	private func validateChunks() -> Bool {
+		guard chunkIHDR != nil else {
+			return false
+		}
+
+		switch chunkIHDR.colorType! {
+		case .IndexedColor:
+			guard chunkPLTE != nil else {
+				return false
+			}
+		case .Greyscale, .GreyscaleWithAlpha:
+			guard chunkPLTE == nil else {
+				return false
+			}
+		default:
+			break
+		}
+
+		return true
 	}
 
 	private func createChunk(chunkID: [Byte], chunkData: [Byte], chunkCRC: [Byte]) -> Bool {
@@ -40,7 +66,18 @@ class Pinge {
 			guard let chunk = IHDRChunk(identifier: chunkID, data: chunkData, crc: chunkCRC) else {
 				return false
 			}
+			guard chunkIHDR == nil else {
+				return false
+			}
 			chunkIHDR = chunk
+		case "PLTE":
+			guard let chunk = PLTEChunk(identifier: chunkID, data: chunkData, crc: chunkCRC) else {
+				return false
+			}
+			guard chunkPLTE == nil else {
+				return false
+			}
+			chunkPLTE = chunk
 		default:
 			print(chunkName)
 		}
@@ -77,6 +114,7 @@ class Pinge {
 				return false
 			}
 		}
+
 		return true
 	}
 
