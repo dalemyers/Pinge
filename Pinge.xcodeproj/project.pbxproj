@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD3D55241D72F6A200993AA8 /* PLTEChunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3D55231D72F6A200993AA8 /* PLTEChunk.swift */; };
+		DD3D55271D72F86F00993AA8 /* DataTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3D55261D72F86F00993AA8 /* DataTypes.swift */; };
 		DDA1D6DC1D6E3A0B0025AD63 /* PNGChunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA1D6DB1D6E3A0B0025AD63 /* PNGChunk.swift */; };
 		DDA1D6DE1D6E3AEC0025AD63 /* IHDRChunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA1D6DD1D6E3AEC0025AD63 /* IHDRChunk.swift */; };
 		DDEFF2891D6D8D8F0028BC86 /* Pinge.h in Headers */ = {isa = PBXBuildFile; fileRef = DDEFF2881D6D8D8F0028BC86 /* Pinge.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -27,6 +29,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DD3D55231D72F6A200993AA8 /* PLTEChunk.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLTEChunk.swift; sourceTree = "<group>"; };
+		DD3D55261D72F86F00993AA8 /* DataTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTypes.swift; sourceTree = "<group>"; };
 		DDA1D6DB1D6E3A0B0025AD63 /* PNGChunk.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PNGChunk.swift; sourceTree = "<group>"; };
 		DDA1D6DD1D6E3AEC0025AD63 /* IHDRChunk.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IHDRChunk.swift; sourceTree = "<group>"; };
 		DDEFF2851D6D8D8F0028BC86 /* Pinge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pinge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -58,6 +62,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DD3D55251D72F6A900993AA8 /* Required Chunks */ = {
+			isa = PBXGroup;
+			children = (
+				DDA1D6DD1D6E3AEC0025AD63 /* IHDRChunk.swift */,
+				DD3D55231D72F6A200993AA8 /* PLTEChunk.swift */,
+			);
+			name = "Required Chunks";
+			sourceTree = "<group>";
+		};
 		DDEFF27B1D6D8D8F0028BC86 = {
 			isa = PBXGroup;
 			children = (
@@ -83,7 +96,8 @@
 				DDEFF29F1D6D8E430028BC86 /* Pinge.swift */,
 				DDEFF28A1D6D8D8F0028BC86 /* Info.plist */,
 				DDA1D6DB1D6E3A0B0025AD63 /* PNGChunk.swift */,
-				DDA1D6DD1D6E3AEC0025AD63 /* IHDRChunk.swift */,
+				DD3D55261D72F86F00993AA8 /* DataTypes.swift */,
+				DD3D55251D72F6A900993AA8 /* Required Chunks */,
 			);
 			path = Pinge;
 			sourceTree = "<group>";
@@ -215,7 +229,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD3D55241D72F6A200993AA8 /* PLTEChunk.swift in Sources */,
 				DDEFF2A01D6D8E430028BC86 /* Pinge.swift in Sources */,
+				DD3D55271D72F86F00993AA8 /* DataTypes.swift in Sources */,
 				DDA1D6DE1D6E3AEC0025AD63 /* IHDRChunk.swift in Sources */,
 				DDA1D6DC1D6E3A0B0025AD63 /* PNGChunk.swift in Sources */,
 			);
