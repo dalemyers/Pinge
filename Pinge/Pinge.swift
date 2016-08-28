@@ -18,6 +18,7 @@ class Pinge {
 	private var non_required_chunks = [PNGChunk]()
 	private var chunkIHDR: IHDRChunk!
 	private var chunkPLTE: PLTEChunk?
+	private var chunkIDAT: PNGChunk!
 
 	init?(data: NSData) {
 		self.data = data
@@ -52,6 +53,13 @@ class Pinge {
 			break
 		}
 
+		// The number of palette entries must not exceed the range that can be
+		// represented in the image bit depth (for example, 2^4 = 16 for a bit
+		// depth of 4)
+		guard chunkPLTE == nil || chunkPLTE!.paletteEntries.count <= Int(pow(2.0, Double(chunkIHDR.bitDepth))) else {
+			return false
+		}
+
 		return true
 	}
 
@@ -75,6 +83,10 @@ class Pinge {
 				return false
 			}
 			guard chunkPLTE == nil else {
+				return false
+			}
+			guard chunkIDAT == nil else {
+				// PLTE must precede the IDAT chunk
 				return false
 			}
 			chunkPLTE = chunk
@@ -111,6 +123,12 @@ class Pinge {
 			offset += 4
 
 			guard createChunk(chunkID, chunkData: chunkData, chunkCRC: chunkCRC) else {
+				return false
+			}
+
+			guard chunkIHDR != nil else {
+				// IHDR must be the first chunk. If we have parsed one and it's
+				// not set, then it must not have been the first one
 				return false
 			}
 		}

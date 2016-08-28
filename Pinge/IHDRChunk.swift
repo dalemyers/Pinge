@@ -28,6 +28,51 @@ public class IHDRChunk: PNGChunk {
     guard extractData() else {
       return nil
     }
+
+    // It would be more efficient to validate the data as we go, but this 
+    // project is about simplicity and clarity.
+    guard validateData() else {
+      return nil
+    }
+  }
+
+  private func validateData() -> Bool {
+    guard width != 0 && height != 0 else {
+      return false
+    }
+
+    guard filterMethod == 0 else {
+      return false
+    }
+
+    guard compressionMethod == 0 else {
+      return false
+    }
+
+    switch colorType! {
+    case .Greyscale:
+      guard [1,2,4,8,16].contains(bitDepth) else {
+        return false
+      }
+    case .TrueColor:
+      guard [8,16].contains(bitDepth) else {
+        return false
+      }
+    case .IndexedColor:
+      guard [1,2,4,8].contains(bitDepth) else {
+        return false
+      }
+    case .GreyscaleWithAlpha:
+      guard [8,16].contains(bitDepth) else {
+        return false
+      }
+    case .TruecolorWithAlpha:
+      guard [8,16].contains(bitDepth) else {
+        return false
+      }
+    }
+
+    return true
   }
 
   private func extractData() -> Bool {
@@ -61,17 +106,11 @@ public class IHDRChunk: PNGChunk {
     var reversedCompressionMethod: UInt8 = 0
     nsdata.getBytes(&reversedCompressionMethod, range: NSMakeRange(offset, sizeof(UInt8)))
     compressionMethod = Int(reversedCompressionMethod)
-    guard compressionMethod == 0 else {
-      return false
-    }
     offset += sizeof(UInt8)
 
     var reversedFilterMethod: UInt8 = 0
     nsdata.getBytes(&reversedFilterMethod, range: NSMakeRange(offset, sizeof(UInt8)))
     filterMethod = Int(reversedFilterMethod)
-    guard filterMethod == 0 else {
-      return false
-    }
     offset += sizeof(UInt8)
 
     var reversedInterlaceMethod: UInt8 = 0
