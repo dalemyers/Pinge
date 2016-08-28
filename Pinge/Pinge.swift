@@ -18,7 +18,7 @@ class Pinge {
 	private var non_required_chunks = [PNGChunk]()
 	private var chunkIHDR: IHDRChunk!
 	private var chunkPLTE: PLTEChunk?
-	private var chunkIDAT: PNGChunk!
+	private var chunkIDAT: IDATChunk!
 
 	init?(data: NSData) {
 		self.data = data
@@ -90,6 +90,11 @@ class Pinge {
 				return false
 			}
 			chunkPLTE = chunk
+		case "IDAT":
+			guard let chunk = IDATChunk(identifier: chunkID, data: chunkData, crc: chunkCRC) else {
+				return false
+			}
+			chunkIDAT = chunk
 		default:
 			print(chunkName)
 		}
