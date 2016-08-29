@@ -8,6 +8,9 @@ public class IDATChunk: PNGChunk {
 
   private var uncompressedData: NSData!
 
+  // TODO add support for multiple IDAT chunks (contents all concatenated 
+  // together make up the zlib stream
+
   public override init?(identifier: [Byte], data: [Byte], crc: [Byte]) {
     super.init(identifier: identifier, data: data, crc: crc)
 
@@ -21,12 +24,9 @@ public class IDATChunk: PNGChunk {
   }
 
   private func extractData() -> Bool {
+    let zlib = Zlib(data: data)
 
-    guard let deflator = ZlibDeflate(data: data) else {
-      return false
-    }
-
-    guard let uncompressedData = deflator.deflate() else {
+    guard let uncompressedData = zlib.inflateStream() else {
       return false
     }
 

@@ -9,8 +9,10 @@
 /* Begin PBXBuildFile section */
 		DD3D55241D72F6A200993AA8 /* PLTEChunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3D55231D72F6A200993AA8 /* PLTEChunk.swift */; };
 		DD3D55271D72F86F00993AA8 /* DataTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3D55261D72F86F00993AA8 /* DataTypes.swift */; };
-		DD3D55291D7317CB00993AA8 /* ZlibDeflate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3D55281D7317CB00993AA8 /* ZlibDeflate.swift */; };
 		DD3D552B1D731BCD00993AA8 /* IDATChunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3D552A1D731BCD00993AA8 /* IDATChunk.swift */; };
+		DD3D552F1D7452A700993AA8 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DD3D552D1D74528100993AA8 /* libz.tbd */; };
+		DD3D55311D7452C800993AA8 /* Zlib.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3D55301D7452C800993AA8 /* Zlib.swift */; };
+		DD3D55341D74539200993AA8 /* module.modulemap in Sources */ = {isa = PBXBuildFile; fileRef = DD3D55331D74539200993AA8 /* module.modulemap */; };
 		DDA1D6DC1D6E3A0B0025AD63 /* PNGChunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA1D6DB1D6E3A0B0025AD63 /* PNGChunk.swift */; };
 		DDA1D6DE1D6E3AEC0025AD63 /* IHDRChunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA1D6DD1D6E3AEC0025AD63 /* IHDRChunk.swift */; };
 		DDEFF2891D6D8D8F0028BC86 /* Pinge.h in Headers */ = {isa = PBXBuildFile; fileRef = DDEFF2881D6D8D8F0028BC86 /* Pinge.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -33,8 +35,11 @@
 /* Begin PBXFileReference section */
 		DD3D55231D72F6A200993AA8 /* PLTEChunk.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLTEChunk.swift; path = Chunks/Required/PLTEChunk.swift; sourceTree = "<group>"; };
 		DD3D55261D72F86F00993AA8 /* DataTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTypes.swift; sourceTree = "<group>"; };
-		DD3D55281D7317CB00993AA8 /* ZlibDeflate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZlibDeflate.swift; sourceTree = "<group>"; };
 		DD3D552A1D731BCD00993AA8 /* IDATChunk.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IDATChunk.swift; path = Chunks/Required/IDATChunk.swift; sourceTree = "<group>"; };
+		DD3D552D1D74528100993AA8 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		DD3D55301D7452C800993AA8 /* Zlib.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = Zlib.swift; sourceTree = "<group>"; tabWidth = 4; };
+		DD3D55331D74539200993AA8 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; name = module.modulemap; path = zlib/module.modulemap; sourceTree = "<group>"; };
+		DD3D55351D7453BA00993AA8 /* include.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = include.h; path = zlib/include.h; sourceTree = "<group>"; };
 		DDA1D6DB1D6E3A0B0025AD63 /* PNGChunk.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PNGChunk.swift; path = Chunks/PNGChunk.swift; sourceTree = "<group>"; };
 		DDA1D6DD1D6E3AEC0025AD63 /* IHDRChunk.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IHDRChunk.swift; path = Chunks/Required/IHDRChunk.swift; sourceTree = "<group>"; };
 		DDEFF2851D6D8D8F0028BC86 /* Pinge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pinge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -52,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD3D552F1D7452A700993AA8 /* libz.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +91,16 @@
 			name = Chunks;
 			sourceTree = "<group>";
 		};
+		DD3D55321D74536600993AA8 /* zlib */ = {
+			isa = PBXGroup;
+			children = (
+				DD3D552D1D74528100993AA8 /* libz.tbd */,
+				DD3D55331D74539200993AA8 /* module.modulemap */,
+				DD3D55351D7453BA00993AA8 /* include.h */,
+			);
+			name = zlib;
+			sourceTree = "<group>";
+		};
 		DDEFF27B1D6D8D8F0028BC86 = {
 			isa = PBXGroup;
 			children = (
@@ -106,12 +122,13 @@
 		DDEFF2871D6D8D8F0028BC86 /* Pinge */ = {
 			isa = PBXGroup;
 			children = (
+				DD3D55301D7452C800993AA8 /* Zlib.swift */,
+				DD3D55321D74536600993AA8 /* zlib */,
 				DDEFF2881D6D8D8F0028BC86 /* Pinge.h */,
 				DDEFF29F1D6D8E430028BC86 /* Pinge.swift */,
 				DDEFF28A1D6D8D8F0028BC86 /* Info.plist */,
 				DD3D552C1D731D0200993AA8 /* Chunks */,
 				DD3D55261D72F86F00993AA8 /* DataTypes.swift */,
-				DD3D55281D7317CB00993AA8 /* ZlibDeflate.swift */,
 			);
 			path = Pinge;
 			sourceTree = "<group>";
@@ -243,13 +260,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD3D55341D74539200993AA8 /* module.modulemap in Sources */,
 				DD3D55241D72F6A200993AA8 /* PLTEChunk.swift in Sources */,
 				DDEFF2A01D6D8E430028BC86 /* Pinge.swift in Sources */,
 				DD3D552B1D731BCD00993AA8 /* IDATChunk.swift in Sources */,
 				DD3D55271D72F86F00993AA8 /* DataTypes.swift in Sources */,
 				DDA1D6DE1D6E3AEC0025AD63 /* IHDRChunk.swift in Sources */,
 				DDA1D6DC1D6E3A0B0025AD63 /* PNGChunk.swift in Sources */,
-				DD3D55291D7317CB00993AA8 /* ZlibDeflate.swift in Sources */,
+				DD3D55311D7452C800993AA8 /* Zlib.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,6 +395,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.myers.Pinge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_INCLUDE_PATHS = Pinge/zlib;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -395,6 +414,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.myers.Pinge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_INCLUDE_PATHS = Pinge/zlib;
 			};
 			name = Release;
 		};
