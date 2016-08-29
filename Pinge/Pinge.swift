@@ -39,9 +39,129 @@ class Pinge {
 			return nil
 		}
 
+		guard unfilterIDATChunks() else {
+			return nil
+		}
+
 		guard validateChunks() else {
 			return nil
 		}
+	}
+
+	private func unfilterIDATChunks() -> Bool {
+		guard chunkIHDR.interlaceMethod == InterlaceMethod.None else {
+			// TODO support ADAM7
+			return false
+		}
+
+		var offset = 0
+		var unfilteredData = [Byte]()
+		var prior: [Byte]!
+
+		while offset < idatDataStream.length {
+			var filterTypeValue: Byte = 0
+			idatDataStream.getBytes(&filterTypeValue, range: NSMakeRange(offset, 1))
+			let filterType = FilterType(rawValue: Int(filterTypeValue))
+			offset += 1
+
+			let bppNonRounded = Double(chunkIHDR.bitDepth * chunkIHDR.colorType.samples()) / 8.0
+			let bpp = Int(ceil(Double(bppNonRounded)))
+			let scanlineLength = Int((Double(chunkIHDR.bitDepth * chunkIHDR.colorType.samples() * chunkIHDR.width) / 8.0) + 0.5)
+
+			guard offset + scanlineLength <= idatDataStream.length else {
+				return false
+			}
+
+			var priorRaw = [Byte](count: scanlineLength, repeatedValue: 0)
+			var currentScanline = [Byte](count: scanlineLength, repeatedValue: 0)
+			var currentRaw = [Byte](count: scanlineLength, repeatedValue: 0)
+
+			idatDataStream.getBytes(&currentScanline, range: NSMakeRange(offset, scanlineLength))
+			offset += scanlineLength
+
+			if filterType == .None {
+
+				unfilteredData.appendContentsOf(currentScanline)
+				return true
+
+			} else if filterType == .Sub {
+
+				for i in 0..<scanlineLength {
+					if i - bpp < 0 {
+						currentRaw[i] = currentScanline[i]
+					} else {
+						currentRaw[i] = Byte((UInt(currentScanline[i]) + UInt(currentRaw[i - bpp])) % 256)
+					}
+				}
+
+			} else if filterType == .Up {
+
+				// TODO test
+				for i in 0..<scanlineLength {
+					currentRaw[i] = Byte((UInt(currentScanline[i]) + UInt(priorRaw[i])) % 256)
+				}
+
+			} else if filterType == .Average {
+
+				// TODO test
+				for i in 0..<scanlineLength {
+					if i - bpp < 0 {
+						currentRaw[i] = currentScanline[i]
+					} else {
+						currentRaw[i] = Byte(
+							(
+								UInt(currentScanline[i]) +
+								UInt(floor(
+										Double((UInt(currentRaw[i - bpp]) + UInt(priorRaw[i])) / 2)
+								))
+							) % 256
+						)
+					}
+				}
+
+			} else if filterType == .Paeth {
+
+				func paethPredictor(left: UInt, upper: UInt, upperLeft: UInt) -> Byte {
+
+					func absDiff(first: UInt, second: UInt) -> UInt {
+						return (first > second) ? (first - second) : (second - first)
+					}
+
+					let estimate: UInt = left + upper - upperLeft // Initial estimate
+					let estimateLeft = absDiff(estimate, second: left)
+					let estimateUpper = absDiff(estimate, second: upper)
+					let estimateUpperLeft = absDiff(estimate, second: upperLeft)
+
+					// Do tie breaker in order of left, upper, upper left
+					if estimateLeft <= estimateUpper && estimateLeft <= estimateUpperLeft {
+						return Byte(left)
+					} else if estimateUpper <= estimateUpperLeft {
+						return Byte(upper)
+					} else {
+						return Byte(upperLeft)
+					}
+				}
+
+				// TODO test
+				for i in 0..<scanlineLength {
+					if i - bpp < 0 {
+						currentRaw[i] = currentScanline[i]
+					} else {
+						currentRaw[i] = Byte((UInt(currentScanline[i]) + UInt(paethPredictor(
+							UInt(currentRaw[i - bpp]),
+							upper: UInt(priorRaw[i]),
+							upperLeft: UInt(priorRaw[i - bpp])
+						))) % 256)
+					}
+				}
+				
+			}
+
+			unfilteredData.appendContentsOf(currentRaw)
+			priorRaw = currentRaw
+		}
+
+		return true
 	}
 
 	private func consolidateIDATChunks() -> Bool {

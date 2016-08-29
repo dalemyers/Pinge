@@ -14,6 +14,9 @@
 		DD3D55311D7452C800993AA8 /* Zlib.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3D55301D7452C800993AA8 /* Zlib.swift */; };
 		DD3D55341D74539200993AA8 /* module.modulemap in Sources */ = {isa = PBXBuildFile; fileRef = DD3D55331D74539200993AA8 /* module.modulemap */; };
 		DD3D55371D746F2C00993AA8 /* IENDChunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3D55361D746F2C00993AA8 /* IENDChunk.swift */; };
+		DD3D55391D747A1200993AA8 /* mspaint.png in Resources */ = {isa = PBXBuildFile; fileRef = DD3D55381D747A1200993AA8 /* mspaint.png */; };
+		DD3D553C1D747AAA00993AA8 /* photoshop-interlaced.png in Resources */ = {isa = PBXBuildFile; fileRef = DD3D553A1D747AAA00993AA8 /* photoshop-interlaced.png */; };
+		DD3D553D1D747AAA00993AA8 /* photoshop.png in Resources */ = {isa = PBXBuildFile; fileRef = DD3D553B1D747AAA00993AA8 /* photoshop.png */; };
 		DDA1D6DC1D6E3A0B0025AD63 /* PNGChunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA1D6DB1D6E3A0B0025AD63 /* PNGChunk.swift */; };
 		DDA1D6DE1D6E3AEC0025AD63 /* IHDRChunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA1D6DD1D6E3AEC0025AD63 /* IHDRChunk.swift */; };
 		DDEFF2891D6D8D8F0028BC86 /* Pinge.h in Headers */ = {isa = PBXBuildFile; fileRef = DDEFF2881D6D8D8F0028BC86 /* Pinge.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -42,6 +45,9 @@
 		DD3D55331D74539200993AA8 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; name = module.modulemap; path = zlib/module.modulemap; sourceTree = "<group>"; };
 		DD3D55351D7453BA00993AA8 /* include.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = include.h; path = zlib/include.h; sourceTree = "<group>"; };
 		DD3D55361D746F2C00993AA8 /* IENDChunk.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IENDChunk.swift; path = Chunks/Required/IENDChunk.swift; sourceTree = "<group>"; };
+		DD3D55381D747A1200993AA8 /* mspaint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mspaint.png; path = TestImages/mspaint.png; sourceTree = "<group>"; };
+		DD3D553A1D747AAA00993AA8 /* photoshop-interlaced.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "photoshop-interlaced.png"; path = "TestImages/photoshop-interlaced.png"; sourceTree = "<group>"; };
+		DD3D553B1D747AAA00993AA8 /* photoshop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = photoshop.png; path = TestImages/photoshop.png; sourceTree = "<group>"; };
 		DDA1D6DB1D6E3A0B0025AD63 /* PNGChunk.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PNGChunk.swift; path = Chunks/PNGChunk.swift; sourceTree = "<group>"; };
 		DDA1D6DD1D6E3AEC0025AD63 /* IHDRChunk.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IHDRChunk.swift; path = Chunks/Required/IHDRChunk.swift; sourceTree = "<group>"; };
 		DDEFF2851D6D8D8F0028BC86 /* Pinge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pinge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -149,6 +155,9 @@
 		DDEFF2A31D6D91820028BC86 /* Test Images */ = {
 			isa = PBXGroup;
 			children = (
+				DD3D553A1D747AAA00993AA8 /* photoshop-interlaced.png */,
+				DD3D553B1D747AAA00993AA8 /* photoshop.png */,
+				DD3D55381D747A1200993AA8 /* mspaint.png */,
 				DDEFF2A11D6D917F0028BC86 /* libpng-test.png */,
 			);
 			name = "Test Images";
@@ -252,7 +261,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD3D553D1D747AAA00993AA8 /* photoshop.png in Resources */,
+				DD3D55391D747A1200993AA8 /* mspaint.png in Resources */,
 				DDEFF2A21D6D917F0028BC86 /* libpng-test.png in Resources */,
+				DD3D553C1D747AAA00993AA8 /* photoshop-interlaced.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
