@@ -19,7 +19,7 @@ class PingeTests: XCTestCase {
 
 		let bundle = NSBundle(forClass: self.dynamicType)
 
-		guard let libpngTestPath = bundle.pathForResource("libpng-test", ofType:"png") else {
+		guard let libpngTestPath = bundle.pathForResource("photoshop", ofType:"png") else {
 			libpngTest = NSData()
 			return
 		}
