@@ -15,10 +15,13 @@ class Pinge {
 
 	private var data: NSData
 
+	private var endChunkFound = false
 	private var non_required_chunks = [PNGChunk]()
 	private var chunkIHDR: IHDRChunk!
 	private var chunkPLTE: PLTEChunk?
 	private var chunkIDAT: IDATChunk!
+	private var chunkIEND: IENDChunk!
+
 
 	init?(data: NSData) {
 		self.data = data
@@ -69,6 +72,11 @@ class Pinge {
 			return false
 		}
 
+		// Once we have seen the end chunk, we can't see anything else
+		guard endChunkFound == false else {
+			return false
+		}
+
 		switch chunkName {
 		case "IHDR":
 			guard let chunk = IHDRChunk(identifier: chunkID, data: chunkData, crc: chunkCRC) else {
@@ -95,6 +103,12 @@ class Pinge {
 				return false
 			}
 			chunkIDAT = chunk
+		case "IEND":
+			guard let chunk = IENDChunk(identifier: chunkID, data: chunkData, crc: chunkCRC) else {
+				return false
+			}
+			chunkIEND = chunk
+			endChunkFound = true
 		default:
 			print(chunkName)
 		}
@@ -136,6 +150,11 @@ class Pinge {
 				// not set, then it must not have been the first one
 				return false
 			}
+		}
+
+		// Ensure we see the end chunk
+		guard chunkIEND != nil else {
+			return false
 		}
 
 		return true
