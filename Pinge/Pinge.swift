@@ -14,12 +14,14 @@ class Pinge {
 	}
 
 	private var data: NSData
+	private var previousChunkName = ""
+	private var idatDataStream: NSData!
 
 	private var endChunkFound = false
 	private var non_required_chunks = [PNGChunk]()
 	private var chunkIHDR: IHDRChunk!
 	private var chunkPLTE: PLTEChunk?
-	private var chunkIDAT: IDATChunk!
+	private var idatChunks = [IDATChunk]()
 	private var chunkIEND: IENDChunk!
 
 
@@ -33,9 +35,38 @@ class Pinge {
 			return nil
 		}
 
+		guard consolidateIDATChunks() else {
+			return nil
+		}
+
 		guard validateChunks() else {
 			return nil
 		}
+	}
+
+	private func consolidateIDATChunks() -> Bool {
+
+		var data = [Byte]()
+
+		for idatChunk in idatChunks {
+			data.appendContentsOf(idatChunk.data)
+		}
+
+		guard data.count > 0 else {
+			// 0 length is wasteful, but fine.
+			idatDataStream = NSData()
+			return true
+		}
+
+		let zlib = Zlib(data: data)
+
+		guard let uncompressedData = zlib.inflateStream() else {
+			return false
+		}
+
+		idatDataStream = uncompressedData
+
+		return true
 	}
 
 	private func validateChunks() -> Bool {
@@ -93,16 +124,20 @@ class Pinge {
 			guard chunkPLTE == nil else {
 				return false
 			}
-			guard chunkIDAT == nil else {
-				// PLTE must precede the IDAT chunk
+			guard idatChunks.count == 0 else {
+				// PLTE must precede the first IDAT chunk
 				return false
 			}
 			chunkPLTE = chunk
 		case "IDAT":
+			guard idatChunks.count == 0 || (idatChunks.count > 0 && previousChunkName == "IDAT") else {
+				// All IDAT chunks must be sequential if there are multiple
+				return false
+			}
 			guard let chunk = IDATChunk(identifier: chunkID, data: chunkData, crc: chunkCRC) else {
 				return false
 			}
-			chunkIDAT = chunk
+			idatChunks.append(chunk)
 		case "IEND":
 			guard let chunk = IENDChunk(identifier: chunkID, data: chunkData, crc: chunkCRC) else {
 				return false
