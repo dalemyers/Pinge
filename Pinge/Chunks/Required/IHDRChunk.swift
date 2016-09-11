@@ -4,7 +4,7 @@
 
 import Foundation
 
-public class IHDRChunk: PNGChunk {
+open class IHDRChunk: PNGChunk {
 
   public var width: Int!
   public var height: Int!
@@ -50,23 +50,23 @@ public class IHDRChunk: PNGChunk {
     }
 
     switch colorType! {
-    case .Greyscale:
+    case .greyscale:
       guard [1,2,4,8,16].contains(bitDepth) else {
         return false
       }
-    case .TrueColor:
+    case .trueColor:
       guard [8,16].contains(bitDepth) else {
         return false
       }
-    case .IndexedColor:
+    case .indexedColor:
       guard [1,2,4,8].contains(bitDepth) else {
         return false
       }
-    case .GreyscaleWithAlpha:
+    case .greyscaleWithAlpha:
       guard [8,16].contains(bitDepth) else {
         return false
       }
-    case .TruecolorWithAlpha:
+    case .truecolorWithAlpha:
       guard [8,16].contains(bitDepth) else {
         return false
       }
@@ -78,47 +78,54 @@ public class IHDRChunk: PNGChunk {
   private func extractData() -> Bool {
     var offset: Int = 0
 
-    let nsdata = NSData(bytes: &data, length: data.count)
+    let data = Data(bytes: dataBytes)
 
-    var reversedWidth: UInt32 = 0
-    nsdata.getBytes(&reversedWidth, range: NSMakeRange(offset, sizeof(UInt32)))
-    width = Int(CFSwapInt32(reversedWidth))
+    guard let width = data.uint32(fromOffset: offset, reverseBytes: true) else {
+      return false
+    }
+    self.width = Int(width)
     offset += 4
 
-    var reversedHeight: UInt32 = 0
-    nsdata.getBytes(&reversedHeight, range: NSMakeRange(offset, sizeof(UInt32)))
-    height = Int(CFSwapInt32(reversedHeight))
-    offset += sizeof(UInt32)
-
-    var reversedBitDepth: UInt8 = 0
-    nsdata.getBytes(&reversedBitDepth, range: NSMakeRange(offset, sizeof(UInt8)))
-    bitDepth = Int(reversedBitDepth)
-    offset += sizeof(UInt8)
-
-    var reversedColorType: UInt8 = 0
-    nsdata.getBytes(&reversedColorType, range: NSMakeRange(offset, sizeof(UInt8)))
-    guard ColorType.isValidValue(Int(reversedColorType)) else {
+    guard let height = data.uint32(fromOffset: offset, reverseBytes: true) else {
       return false
     }
-    colorType = ColorType(rawValue: Int(reversedColorType))
-    offset += sizeof(UInt8)
+    self.height = Int(height)
+    offset += 4
 
-    var reversedCompressionMethod: UInt8 = 0
-    nsdata.getBytes(&reversedCompressionMethod, range: NSMakeRange(offset, sizeof(UInt8)))
-    compressionMethod = Int(reversedCompressionMethod)
-    offset += sizeof(UInt8)
-
-    var reversedFilterMethod: UInt8 = 0
-    nsdata.getBytes(&reversedFilterMethod, range: NSMakeRange(offset, sizeof(UInt8)))
-    filterMethod = Int(reversedFilterMethod)
-    offset += sizeof(UInt8)
-
-    var reversedInterlaceMethod: UInt8 = 0
-    nsdata.getBytes(&reversedInterlaceMethod, range: NSMakeRange(offset, sizeof(UInt8)))
-    guard InterlaceMethod.isValidValue(Int(reversedInterlaceMethod)) else {
+    guard let bitDepth = data.uint8(fromOffset: offset) else {
       return false
     }
-    interlaceMethod = InterlaceMethod(rawValue: Int(reversedInterlaceMethod))
+    self.bitDepth = Int(bitDepth)
+    offset += 1
+
+    guard let colorType = data.uint8(fromOffset: offset) else {
+      return false
+    }
+    guard ColorType.isValidValue(Int(colorType)) else {
+      return false
+    }
+    self.colorType = ColorType(rawValue: Int(colorType))
+    offset += 1
+
+    guard let compressionMethod = data.uint8(fromOffset: offset) else {
+      return false
+    }
+    self.compressionMethod = Int(compressionMethod)
+    offset += 1
+
+    guard let filterMethod = data.uint8(fromOffset: offset) else {
+      return false
+    }
+    self.filterMethod = Int(filterMethod)
+    offset += 1
+
+    guard let interlaceMethod = data.uint8(fromOffset: offset) else {
+      return false
+    }
+    guard InterlaceMethod.isValidValue(Int(interlaceMethod)) else {
+      return false
+    }
+    self.interlaceMethod = InterlaceMethod(rawValue: Int(interlaceMethod))
 
     return true
   }

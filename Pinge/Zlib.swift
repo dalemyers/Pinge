@@ -8,26 +8,26 @@ import zlib
 class Zlib {
 
     struct Constants {
-        private static let chunkSize: UInt32 = 16384
+        fileprivate static let chunkSize: UInt32 = 16384
     }
 
-    private var rawData: [Byte]
+    fileprivate var rawData: [Byte]
 
     init(data: [Byte]) {
         rawData = data
     }
 
-    func inflateStream() -> NSData? {
+    func inflateStream() -> Data? {
 
         let allOutput = NSMutableData()
         var returnCode: Int32 = 0
         var have: UInt32 = 0
         var stream = z_stream()
 
-        var outChunk: [Byte] = [Byte](count: Int(Constants.chunkSize), repeatedValue: 0)
+        var outChunk: [Byte] = [Byte](repeating: 0, count: Int(Constants.chunkSize))
 
         stream.avail_in = 0
-        returnCode = inflateInit_(&stream, ZLIB_VERSION, Int32(sizeof(z_stream)))
+        returnCode = inflateInit_(&stream, ZLIB_VERSION, Int32(MemoryLayout<z_stream>.size))
 
         guard returnCode == Z_OK else {
           return nil
@@ -40,13 +40,13 @@ class Zlib {
                 break
             }
 
-            stream.next_in = UnsafeMutablePointer<Bytef>(rawData)
+            stream.next_in = UnsafeMutablePointer<Bytef>(mutating: rawData)
 
             /* run inflate() on input until output buffer not full */
             repeat {
 
                 stream.avail_out = Constants.chunkSize;
-                stream.next_out = UnsafeMutablePointer<Bytef>(outChunk);
+                stream.next_out = UnsafeMutablePointer<Bytef>(mutating: outChunk);
 
                 returnCode = inflate(&stream, Z_NO_FLUSH)
 
@@ -69,7 +69,7 @@ class Zlib {
 
                 have = Constants.chunkSize - stream.avail_out
 
-                allOutput.appendBytes(&outChunk, length: Int(have))
+                allOutput.append(&outChunk, length: Int(have))
 
             } while stream.avail_out == 0
         } while returnCode != Z_STREAM_END
@@ -80,6 +80,6 @@ class Zlib {
             return nil
         }
 
-        return allOutput
+        return allOutput as Data
     }
 }

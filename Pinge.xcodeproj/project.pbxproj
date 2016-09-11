@@ -14,16 +14,17 @@
 		DD3D55311D7452C800993AA8 /* Zlib.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3D55301D7452C800993AA8 /* Zlib.swift */; };
 		DD3D55341D74539200993AA8 /* module.modulemap in Sources */ = {isa = PBXBuildFile; fileRef = DD3D55331D74539200993AA8 /* module.modulemap */; };
 		DD3D55371D746F2C00993AA8 /* IENDChunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3D55361D746F2C00993AA8 /* IENDChunk.swift */; };
-		DD3D55391D747A1200993AA8 /* mspaint.png in Resources */ = {isa = PBXBuildFile; fileRef = DD3D55381D747A1200993AA8 /* mspaint.png */; };
-		DD3D553C1D747AAA00993AA8 /* photoshop-interlaced.png in Resources */ = {isa = PBXBuildFile; fileRef = DD3D553A1D747AAA00993AA8 /* photoshop-interlaced.png */; };
-		DD3D553D1D747AAA00993AA8 /* photoshop.png in Resources */ = {isa = PBXBuildFile; fileRef = DD3D553B1D747AAA00993AA8 /* photoshop.png */; };
+		DD3D55391D747A1200993AA8 /* mspaint.pinge in Resources */ = {isa = PBXBuildFile; fileRef = DD3D55381D747A1200993AA8 /* mspaint.pinge */; };
+		DD3D553C1D747AAA00993AA8 /* photoshop-interlaced.pinge in Resources */ = {isa = PBXBuildFile; fileRef = DD3D553A1D747AAA00993AA8 /* photoshop-interlaced.pinge */; };
+		DD3D553D1D747AAA00993AA8 /* photoshop.pinge in Resources */ = {isa = PBXBuildFile; fileRef = DD3D553B1D747AAA00993AA8 /* photoshop.pinge */; };
 		DDA1D6DC1D6E3A0B0025AD63 /* PNGChunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA1D6DB1D6E3A0B0025AD63 /* PNGChunk.swift */; };
 		DDA1D6DE1D6E3AEC0025AD63 /* IHDRChunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA1D6DD1D6E3AEC0025AD63 /* IHDRChunk.swift */; };
 		DDEFF2891D6D8D8F0028BC86 /* Pinge.h in Headers */ = {isa = PBXBuildFile; fileRef = DDEFF2881D6D8D8F0028BC86 /* Pinge.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DDEFF2901D6D8D8F0028BC86 /* Pinge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDEFF2851D6D8D8F0028BC86 /* Pinge.framework */; };
 		DDEFF2951D6D8D8F0028BC86 /* PingeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDEFF2941D6D8D8F0028BC86 /* PingeTests.swift */; };
 		DDEFF2A01D6D8E430028BC86 /* Pinge.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDEFF29F1D6D8E430028BC86 /* Pinge.swift */; };
-		DDEFF2A21D6D917F0028BC86 /* libpng-test.png in Resources */ = {isa = PBXBuildFile; fileRef = DDEFF2A11D6D917F0028BC86 /* libpng-test.png */; };
+		DDEFF2A21D6D917F0028BC86 /* libpng-test.pinge in Resources */ = {isa = PBXBuildFile; fileRef = DDEFF2A11D6D917F0028BC86 /* libpng-test.pinge */; };
+		DDF745B91D85DE1B007978F2 /* TypeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF745B81D85DE1B007978F2 /* TypeExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,9 +46,9 @@
 		DD3D55331D74539200993AA8 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; name = module.modulemap; path = zlib/module.modulemap; sourceTree = "<group>"; };
 		DD3D55351D7453BA00993AA8 /* include.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = include.h; path = zlib/include.h; sourceTree = "<group>"; };
 		DD3D55361D746F2C00993AA8 /* IENDChunk.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IENDChunk.swift; path = Chunks/Required/IENDChunk.swift; sourceTree = "<group>"; };
-		DD3D55381D747A1200993AA8 /* mspaint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mspaint.png; path = TestImages/mspaint.png; sourceTree = "<group>"; };
-		DD3D553A1D747AAA00993AA8 /* photoshop-interlaced.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "photoshop-interlaced.png"; path = "TestImages/photoshop-interlaced.png"; sourceTree = "<group>"; };
-		DD3D553B1D747AAA00993AA8 /* photoshop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = photoshop.png; path = TestImages/photoshop.png; sourceTree = "<group>"; };
+		DD3D55381D747A1200993AA8 /* mspaint.pinge */ = {isa = PBXFileReference; lastKnownFileType = file; name = mspaint.pinge; path = TestImages/mspaint.pinge; sourceTree = "<group>"; };
+		DD3D553A1D747AAA00993AA8 /* photoshop-interlaced.pinge */ = {isa = PBXFileReference; lastKnownFileType = file; name = "photoshop-interlaced.pinge"; path = "TestImages/photoshop-interlaced.pinge"; sourceTree = "<group>"; };
+		DD3D553B1D747AAA00993AA8 /* photoshop.pinge */ = {isa = PBXFileReference; lastKnownFileType = file; name = photoshop.pinge; path = TestImages/photoshop.pinge; sourceTree = "<group>"; };
 		DDA1D6DB1D6E3A0B0025AD63 /* PNGChunk.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PNGChunk.swift; path = Chunks/PNGChunk.swift; sourceTree = "<group>"; };
 		DDA1D6DD1D6E3AEC0025AD63 /* IHDRChunk.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IHDRChunk.swift; path = Chunks/Required/IHDRChunk.swift; sourceTree = "<group>"; };
 		DDEFF2851D6D8D8F0028BC86 /* Pinge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pinge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -57,7 +58,8 @@
 		DDEFF2941D6D8D8F0028BC86 /* PingeTests.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = PingeTests.swift; sourceTree = "<group>"; tabWidth = 4; usesTabs = 1; };
 		DDEFF2961D6D8D8F0028BC86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DDEFF29F1D6D8E430028BC86 /* Pinge.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = Pinge.swift; sourceTree = "<group>"; tabWidth = 4; usesTabs = 1; };
-		DDEFF2A11D6D917F0028BC86 /* libpng-test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "libpng-test.png"; path = "TestImages/libpng-test.png"; sourceTree = "<group>"; };
+		DDEFF2A11D6D917F0028BC86 /* libpng-test.pinge */ = {isa = PBXFileReference; lastKnownFileType = file; name = "libpng-test.pinge"; path = "TestImages/libpng-test.pinge"; sourceTree = "<group>"; };
+		DDF745B81D85DE1B007978F2 /* TypeExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 				DDEFF28A1D6D8D8F0028BC86 /* Info.plist */,
 				DD3D552C1D731D0200993AA8 /* Chunks */,
 				DD3D55261D72F86F00993AA8 /* DataTypes.swift */,
+				DDF745B81D85DE1B007978F2 /* TypeExtensions.swift */,
 			);
 			path = Pinge;
 			sourceTree = "<group>";
@@ -155,10 +158,10 @@
 		DDEFF2A31D6D91820028BC86 /* Test Images */ = {
 			isa = PBXGroup;
 			children = (
-				DD3D553A1D747AAA00993AA8 /* photoshop-interlaced.png */,
-				DD3D553B1D747AAA00993AA8 /* photoshop.png */,
-				DD3D55381D747A1200993AA8 /* mspaint.png */,
-				DDEFF2A11D6D917F0028BC86 /* libpng-test.png */,
+				DD3D553A1D747AAA00993AA8 /* photoshop-interlaced.pinge */,
+				DD3D553B1D747AAA00993AA8 /* photoshop.pinge */,
+				DD3D55381D747A1200993AA8 /* mspaint.pinge */,
+				DDEFF2A11D6D917F0028BC86 /* libpng-test.pinge */,
 			);
 			name = "Test Images";
 			sourceTree = "<group>";
@@ -225,9 +228,11 @@
 				TargetAttributes = {
 					DDEFF2841D6D8D8F0028BC86 = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0800;
 					};
 					DDEFF28E1D6D8D8F0028BC86 = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -261,10 +266,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD3D553D1D747AAA00993AA8 /* photoshop.png in Resources */,
-				DD3D55391D747A1200993AA8 /* mspaint.png in Resources */,
-				DDEFF2A21D6D917F0028BC86 /* libpng-test.png in Resources */,
-				DD3D553C1D747AAA00993AA8 /* photoshop-interlaced.png in Resources */,
+				DD3D553D1D747AAA00993AA8 /* photoshop.pinge in Resources */,
+				DD3D55391D747A1200993AA8 /* mspaint.pinge in Resources */,
+				DDEFF2A21D6D917F0028BC86 /* libpng-test.pinge in Resources */,
+				DD3D553C1D747AAA00993AA8 /* photoshop-interlaced.pinge in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,6 +289,7 @@
 				DDA1D6DE1D6E3AEC0025AD63 /* IHDRChunk.swift in Sources */,
 				DDA1D6DC1D6E3A0B0025AD63 /* PNGChunk.swift in Sources */,
 				DD3D55311D7452C800993AA8 /* Zlib.swift in Sources */,
+				DDF745B91D85DE1B007978F2 /* TypeExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,6 +407,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				COMPRESS_PNG_FILES = NO;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -413,6 +420,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_INCLUDE_PATHS = Pinge/zlib;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -420,6 +428,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				COMPRESS_PNG_FILES = NO;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -431,6 +440,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_INCLUDE_PATHS = Pinge/zlib;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -441,6 +451,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.myers.PingeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -451,6 +462,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.myers.PingeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

@@ -4,7 +4,7 @@
 
 import Foundation
 
-public class IDATChunk: PNGChunk {
+open class IDATChunk: PNGChunk {
 
   public override init?(identifier: [Byte], data: [Byte], crc: [Byte]) {
     super.init(identifier: identifier, data: data, crc: crc)

@@ -13,9 +13,9 @@ class Pinge {
 		static let headerLength: Int = 8
 	}
 
-	private var data: NSData
+	private var data: Data
 	private var previousChunkName = ""
-	private var idatDataStream: NSData!
+	private var idatDataStream: Data!
 
 	private var endChunkFound = false
 	private var non_required_chunks = [PNGChunk]()
@@ -25,7 +25,7 @@ class Pinge {
 	private var chunkIEND: IENDChunk!
 
 
-	init?(data: NSData) {
+	init?(data: Data) {
 		self.data = data
 		guard validateHeader() else {
 			return nil
@@ -49,7 +49,12 @@ class Pinge {
 	}
 
 	private func unfilterIDATChunks() -> Bool {
-		guard chunkIHDR.interlaceMethod == InterlaceMethod.None else {
+
+		guard let chunkIHDR = chunkIHDR else {
+			return false
+		}
+
+		guard chunkIHDR.interlaceMethod == InterlaceMethod.none else {
 			// TODO support ADAM7
 			return false
 		}
@@ -58,33 +63,37 @@ class Pinge {
 		var unfilteredData = [Byte]()
 		var prior: [Byte]!
 
-		while offset < idatDataStream.length {
-			var filterTypeValue: Byte = 0
-			idatDataStream.getBytes(&filterTypeValue, range: NSMakeRange(offset, 1))
+		while offset < idatDataStream.count {
+			guard let filterTypeValue: Byte = idatDataStream.uint8(fromOffset: offset) else {
+				return false
+			}
 			let filterType = FilterType(rawValue: Int(filterTypeValue))
 			offset += 1
 
 			let bppNonRounded = Double(chunkIHDR.bitDepth * chunkIHDR.colorType.samples()) / 8.0
 			let bpp = Int(ceil(Double(bppNonRounded)))
-			let scanlineLength = Int((Double(chunkIHDR.bitDepth * chunkIHDR.colorType.samples() * chunkIHDR.width) / 8.0) + 0.5)
+			let bitDepth = Double(chunkIHDR.bitDepth!)
+			let samples = Double(chunkIHDR.colorType.samples())
+			let lineWidth = Double(chunkIHDR.width!)
+			let scanlineLength = Int((bitDepth * samples * lineWidth / 8.0) + 0.5)
 
-			guard offset + scanlineLength <= idatDataStream.length else {
+			guard offset + scanlineLength <= idatDataStream.count else {
 				return false
 			}
 
-			var priorRaw = [Byte](count: scanlineLength, repeatedValue: 0)
-			var currentScanline = [Byte](count: scanlineLength, repeatedValue: 0)
-			var currentRaw = [Byte](count: scanlineLength, repeatedValue: 0)
+			var priorRaw = [Byte](repeating: 0, count: scanlineLength)
+			var currentScanline = [Byte](repeating: 0, count: scanlineLength)
+			var currentRaw = [Byte](repeating: 0, count: scanlineLength)
 
-			idatDataStream.getBytes(&currentScanline, range: NSMakeRange(offset, scanlineLength))
+			idatDataStream.copyBytes(to: &currentScanline, from: offset..<(offset + scanlineLength))
 			offset += scanlineLength
 
-			if filterType == .None {
+			if filterType == .none {
 
-				unfilteredData.appendContentsOf(currentScanline)
+				unfilteredData.append(contentsOf: currentScanline)
 				return true
 
-			} else if filterType == .Sub {
+			} else if filterType == .sub {
 
 				for i in 0..<scanlineLength {
 					if i - bpp < 0 {
@@ -94,36 +103,33 @@ class Pinge {
 					}
 				}
 
-			} else if filterType == .Up {
+			} else if filterType == .up {
 
 				// TODO test
 				for i in 0..<scanlineLength {
 					currentRaw[i] = Byte((UInt(currentScanline[i]) + UInt(priorRaw[i])) % 256)
 				}
 
-			} else if filterType == .Average {
+			} else if filterType == .average {
 
 				// TODO test
 				for i in 0..<scanlineLength {
 					if i - bpp < 0 {
 						currentRaw[i] = currentScanline[i]
 					} else {
-						currentRaw[i] = Byte(
-							(
-								UInt(currentScanline[i]) +
-								UInt(floor(
-										Double((UInt(currentRaw[i - bpp]) + UInt(priorRaw[i])) / 2)
-								))
-							) % 256
-						)
+						let currentByte = UInt(currentScanline[i])
+						let precedingByte = UInt(currentRaw[i - bpp])
+						let upperByte = UInt(priorRaw[i])
+						let upperPrecedingMean = Double(precedingByte + upperByte) / 2.0
+						currentRaw[i] = Byte((currentByte + UInt(floor(upperPrecedingMean))) % 256)
 					}
 				}
 
-			} else if filterType == .Paeth {
+			} else if filterType == .paeth {
 
-				func paethPredictor(left: UInt, upper: UInt, upperLeft: UInt) -> Byte {
+				func paethPredictor(_ left: UInt, upper: UInt, upperLeft: UInt) -> Byte {
 
-					func absDiff(first: UInt, second: UInt) -> UInt {
+					func absDiff(_ first: UInt, second: UInt) -> UInt {
 						return (first > second) ? (first - second) : (second - first)
 					}
 
@@ -157,7 +163,7 @@ class Pinge {
 				
 			}
 
-			unfilteredData.appendContentsOf(currentRaw)
+			unfilteredData.append(contentsOf: currentRaw)
 			priorRaw = currentRaw
 		}
 
@@ -166,25 +172,25 @@ class Pinge {
 
 	private func consolidateIDATChunks() -> Bool {
 
-		var data = [Byte]()
+		var dataBytes = [Byte]()
 
 		for idatChunk in idatChunks {
-			data.appendContentsOf(idatChunk.data)
+			dataBytes.append(contentsOf: idatChunk.dataBytes)
 		}
 
-		guard data.count > 0 else {
+		guard dataBytes.count > 0 else {
 			// 0 length is wasteful, but fine.
-			idatDataStream = NSData()
+			idatDataStream = Data()
 			return true
 		}
 
-		let zlib = Zlib(data: data)
+		let zlib = Zlib(data: dataBytes)
 
 		guard let uncompressedData = zlib.inflateStream() else {
 			return false
 		}
 
-		idatDataStream = uncompressedData
+		idatDataStream = uncompressedData as Data!
 
 		return true
 	}
@@ -195,11 +201,11 @@ class Pinge {
 		}
 
 		switch chunkIHDR.colorType! {
-		case .IndexedColor:
+		case .indexedColor:
 			guard chunkPLTE != nil else {
 				return false
 			}
-		case .Greyscale, .GreyscaleWithAlpha:
+		case .greyscale, .greyscaleWithAlpha:
 			guard chunkPLTE == nil else {
 				return false
 			}
@@ -219,7 +225,7 @@ class Pinge {
 
 	private func createChunk(chunkID: [Byte], chunkData: [Byte], chunkCRC: [Byte]) -> Bool {
 		
-		guard let chunkName = String(bytes: chunkID, encoding: NSUTF8StringEncoding) else {
+		guard let chunkName = String(bytes: chunkID, encoding: .utf8) else {
 			return false
 		}
 
@@ -274,29 +280,31 @@ class Pinge {
 	private func readChunks() -> Bool {
 		var offset = Constants.headerLength
 
-		while offset < data.length {
+		while offset < data.count {
+
 			// Chunk length
-			var chunkLength: UInt32 = 0
-			data.getBytes(&chunkLength, range: NSMakeRange(offset, sizeof(UInt32)))
-			chunkLength = CFSwapInt32(chunkLength)
+			guard let chunkLength = data.uint32(fromOffset: offset, reverseBytes: true) else {
+				return false
+			}
 			offset += 4
 
+
 			// Chunk ID
-			var chunkID: [Byte] = [Byte](count: 4, repeatedValue: 0)
-			data.getBytes(&chunkID, range: NSMakeRange(offset, 4))
+			var chunkID: [Byte] = [Byte](repeating: 0, count: 4)
+			data.copyBytes(to: &chunkID, from: offset..<(offset + 4))
 			offset += 4
 
 			// Chunk Data
-			var chunkData: [Byte] = [Byte](count: Int(chunkLength), repeatedValue: 0)
-			data.getBytes(&chunkData, range: NSMakeRange(offset, Int(chunkLength)))
+			var chunkData: [Byte] = [Byte](repeating: 0, count: Int(chunkLength))
+			data.copyBytes(to: &chunkData, from: offset..<(offset + Int(chunkLength)))
 			offset += Int(chunkLength)
 
 			// Chunk CRC
-			var chunkCRC: [Byte] = [Byte](count: 4, repeatedValue: 0)
-			data.getBytes(&chunkCRC, range: NSMakeRange(offset, 4))
+			var chunkCRC: [Byte] = [Byte](repeating: 0, count: 4)
+			data.copyBytes(to: &chunkCRC, from: offset..<(offset + 4))
 			offset += 4
 
-			guard createChunk(chunkID, chunkData: chunkData, chunkCRC: chunkCRC) else {
+			guard createChunk(chunkID: chunkID, chunkData: chunkData, chunkCRC: chunkCRC) else {
 				return false
 			}
 
@@ -316,14 +324,14 @@ class Pinge {
 	}
 
 	private func validateHeader() -> Bool {
-		if data.length < Constants.headerLength {
+		if data.count < Constants.headerLength {
 			return false
 		}
 
-		var headerData: [Byte] = [Byte](count: Constants.headerLength, repeatedValue: 0)
-		data.getBytes(&headerData, length: Constants.headerLength * sizeof(Byte))
+		var headerData: [Byte] = [Byte](repeating: 0, count: Constants.headerLength)
+		(data as NSData).getBytes(&headerData, length: Constants.headerLength * MemoryLayout<Byte>.size)
 
-		for (a,b) in Zip2Sequence(headerData, Constants.pngHeader) {
+		for (a,b) in zip(headerData, Constants.pngHeader) {
 			if a != b {
 				return false
 			}
