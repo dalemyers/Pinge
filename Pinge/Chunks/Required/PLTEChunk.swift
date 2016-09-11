@@ -4,7 +4,7 @@
 
 import Foundation
 
-public class PLTEChunk: PNGChunk {
+open class PLTEChunk: PNGChunk {
 
   public var paletteEntries = [UIColor]()
 
@@ -30,15 +30,10 @@ public class PLTEChunk: PNGChunk {
 
   private func extractData() -> Bool {
 
-    let nsdata = NSData(bytes: &data, length: data.count)
-
-    for i in 0..<(data.count / 3) {
-      var red: UInt8 = 0
-      var green: UInt8 = 0
-      var blue: UInt8 = 0
-      nsdata.getBytes(&red,   range: NSMakeRange(i * 3 + 0, sizeof(UInt8)))
-      nsdata.getBytes(&green, range: NSMakeRange(i * 3 + 1, sizeof(UInt8)))
-      nsdata.getBytes(&blue,  range: NSMakeRange(i * 3 + 2, sizeof(UInt8)))
+    for i in 0..<(dataBytes.count / 3) {
+      let red: UInt8 = dataBytes[i * 3 + 0]
+      let green: UInt8 = dataBytes[i * 3 + 1]
+      let blue: UInt8 = dataBytes[i * 3 + 2]
       let color = UIColor(
         red: (CGFloat(red) / 255.0),
         green: (CGFloat(green) / 255.0),

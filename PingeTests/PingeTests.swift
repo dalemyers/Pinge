@@ -11,20 +11,22 @@ import XCTest
 
 class PingeTests: XCTestCase {
 
-	private var libpngTest: NSData!
+	private var libpngTest: Data!
 
 	override func setUp() {
 		super.setUp()
 		// Put setup code here. This method is called before the invocation of each test method in the class.
 
-		let bundle = NSBundle(forClass: self.dynamicType)
+		let bundle = Bundle(for: type(of: self))
 
-		guard let libpngTestPath = bundle.pathForResource("photoshop", ofType:"png") else {
-			libpngTest = NSData()
+		// If we leave the image as PNG, Apple compress them using their special
+		// encoder: http://iphonedevwiki.net/index.php/CgBI_file_format
+		guard let libpngTestPath = bundle.path(forResource: "photoshop", ofType:"pinge") else {
+			libpngTest = Data()
 			return
 		}
 
-		libpngTest = NSData(contentsOfFile: libpngTestPath)
+		libpngTest = try? Data(contentsOf: URL(fileURLWithPath: libpngTestPath))
 	}
 
 	override func tearDown() {
@@ -39,7 +41,7 @@ class PingeTests: XCTestCase {
 
 	func testPerformanceExample() {
 		// This is an example of a performance test case.
-		self.measureBlock {
+		self.measure {
 			// Put the code you want to measure the time of here.
 		}
 	}

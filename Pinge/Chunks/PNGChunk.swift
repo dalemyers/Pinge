@@ -6,10 +6,10 @@ import Foundation
 
 public typealias Byte = UInt8
 
-public class PNGChunk {
+open class PNGChunk {
 
   internal var identifier: [Byte]
-  internal var data: [Byte]
+  internal var dataBytes: [Byte]
   internal var crc: [Byte]
 
   public var isAncillary: Bool {
@@ -26,12 +26,12 @@ public class PNGChunk {
     }
 
     self.identifier = identifier
-    self.data = data
+    self.dataBytes = data
     self.crc = crc
   }
 
   public func chunkIdentifier() -> String {
-    guard let stringIdentifier = String(bytes: identifier, encoding: NSUTF8StringEncoding) else {
+    guard let stringIdentifier = String(bytes: identifier, encoding: .utf8) else {
       return "????"
     }
     return stringIdentifier
