@@ -13,9 +13,9 @@ class Pinge {
 		static let headerLength: Int = 8
 	}
 
-	private var data: Data
+	private var data: DataExtractor
 	private var previousChunkName = ""
-	private var idatDataStream: Data!
+	private var idatDataStream: DataExtractor!
 
 	private var endChunkFound = false
 	private var non_required_chunks = [PNGChunk]()
@@ -26,7 +26,7 @@ class Pinge {
 
 
 	init?(data: Data) {
-		self.data = data
+		self.data = DataExtractor(data: data)
 		guard validateHeader() else {
 			return nil
 		}
@@ -59,16 +59,14 @@ class Pinge {
 			return false
 		}
 
-		var offset = 0
 		var unfilteredData = [Byte]()
 		var prior: [Byte]!
 
-		while offset < idatDataStream.count {
-			guard let filterTypeValue: Byte = idatDataStream.uint8(fromOffset: offset) else {
+		while idatDataStream.remainingData() {
+			guard let filterTypeValue: Byte = idatDataStream.nextUInt8() else {
 				return false
 			}
 			let filterType = FilterType(rawValue: Int(filterTypeValue))
-			offset += 1
 
 			let bppNonRounded = Double(chunkIHDR.bitDepth * chunkIHDR.colorType.samples()) / 8.0
 			let bpp = Int(ceil(Double(bppNonRounded)))
@@ -77,7 +75,7 @@ class Pinge {
 			let lineWidth = Double(chunkIHDR.width!)
 			let scanlineLength = Int((bitDepth * samples * lineWidth / 8.0) + 0.5)
 
-			guard offset + scanlineLength <= idatDataStream.count else {
+			guard idatDataStream.bytesRemaining() >= scanlineLength else {
 				return false
 			}
 
@@ -85,8 +83,7 @@ class Pinge {
 			var currentScanline = [Byte](repeating: 0, count: scanlineLength)
 			var currentRaw = [Byte](repeating: 0, count: scanlineLength)
 
-			idatDataStream.copyBytes(to: &currentScanline, from: offset..<(offset + scanlineLength))
-			offset += scanlineLength
+			idatDataStream.copyNextBytes(to: &currentScanline, length: scanlineLength)
 
 			if filterType == .none {
 
@@ -180,7 +177,7 @@ class Pinge {
 
 		guard dataBytes.count > 0 else {
 			// 0 length is wasteful, but fine.
-			idatDataStream = Data()
+			idatDataStream = DataExtractor(data: Data())
 			return true
 		}
 
@@ -190,7 +187,7 @@ class Pinge {
 			return false
 		}
 
-		idatDataStream = uncompressedData as Data!
+		idatDataStream = DataExtractor(data: (uncompressedData as Data!))
 
 		return true
 	}
@@ -278,31 +275,26 @@ class Pinge {
 	}
 
 	private func readChunks() -> Bool {
-		var offset = Constants.headerLength
 
-		while offset < data.count {
+		while data.remainingData() {
 
 			// Chunk length
-			guard let chunkLength = data.uint32(fromOffset: offset, reverseBytes: true) else {
+			guard let chunkLength = data.nextUInt32(reverseBytes: true) else {
 				return false
 			}
-			offset += 4
 
 
 			// Chunk ID
 			var chunkID: [Byte] = [Byte](repeating: 0, count: 4)
-			data.copyBytes(to: &chunkID, from: offset..<(offset + 4))
-			offset += 4
+			data.copyNextBytes(to: &chunkID, length: 4)
 
 			// Chunk Data
 			var chunkData: [Byte] = [Byte](repeating: 0, count: Int(chunkLength))
-			data.copyBytes(to: &chunkData, from: offset..<(offset + Int(chunkLength)))
-			offset += Int(chunkLength)
+			data.copyNextBytes(to: &chunkData, length: Int(chunkLength))
 
 			// Chunk CRC
 			var chunkCRC: [Byte] = [Byte](repeating: 0, count: 4)
-			data.copyBytes(to: &chunkCRC, from: offset..<(offset + 4))
-			offset += 4
+			data.copyNextBytes(to: &chunkCRC, length: 4)
 
 			guard createChunk(chunkID: chunkID, chunkData: chunkData, chunkCRC: chunkCRC) else {
 				return false
@@ -324,12 +316,12 @@ class Pinge {
 	}
 
 	private func validateHeader() -> Bool {
-		if data.count < Constants.headerLength {
+		guard data.bytesRemaining() >= Constants.headerLength else {
 			return false
 		}
 
 		var headerData: [Byte] = [Byte](repeating: 0, count: Constants.headerLength)
-		(data as NSData).getBytes(&headerData, length: Constants.headerLength * MemoryLayout<Byte>.size)
+		data.copyNextBytes(to: &headerData, length: Constants.headerLength)
 
 		for (a,b) in zip(headerData, Constants.pngHeader) {
 			if a != b {

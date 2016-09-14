@@ -19,12 +19,12 @@
 		DD3D553D1D747AAA00993AA8 /* photoshop.pinge in Resources */ = {isa = PBXBuildFile; fileRef = DD3D553B1D747AAA00993AA8 /* photoshop.pinge */; };
 		DDA1D6DC1D6E3A0B0025AD63 /* PNGChunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA1D6DB1D6E3A0B0025AD63 /* PNGChunk.swift */; };
 		DDA1D6DE1D6E3AEC0025AD63 /* IHDRChunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA1D6DD1D6E3AEC0025AD63 /* IHDRChunk.swift */; };
+		DDB526121D8967CB005D0ECA /* DataExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB526111D8967CB005D0ECA /* DataExtractor.swift */; };
 		DDEFF2891D6D8D8F0028BC86 /* Pinge.h in Headers */ = {isa = PBXBuildFile; fileRef = DDEFF2881D6D8D8F0028BC86 /* Pinge.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DDEFF2901D6D8D8F0028BC86 /* Pinge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDEFF2851D6D8D8F0028BC86 /* Pinge.framework */; };
 		DDEFF2951D6D8D8F0028BC86 /* PingeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDEFF2941D6D8D8F0028BC86 /* PingeTests.swift */; };
 		DDEFF2A01D6D8E430028BC86 /* Pinge.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDEFF29F1D6D8E430028BC86 /* Pinge.swift */; };
 		DDEFF2A21D6D917F0028BC86 /* libpng-test.pinge in Resources */ = {isa = PBXBuildFile; fileRef = DDEFF2A11D6D917F0028BC86 /* libpng-test.pinge */; };
-		DDF745B91D85DE1B007978F2 /* TypeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF745B81D85DE1B007978F2 /* TypeExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +51,7 @@
 		DD3D553B1D747AAA00993AA8 /* photoshop.pinge */ = {isa = PBXFileReference; lastKnownFileType = file; name = photoshop.pinge; path = TestImages/photoshop.pinge; sourceTree = "<group>"; };
 		DDA1D6DB1D6E3A0B0025AD63 /* PNGChunk.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PNGChunk.swift; path = Chunks/PNGChunk.swift; sourceTree = "<group>"; };
 		DDA1D6DD1D6E3AEC0025AD63 /* IHDRChunk.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IHDRChunk.swift; path = Chunks/Required/IHDRChunk.swift; sourceTree = "<group>"; };
+		DDB526111D8967CB005D0ECA /* DataExtractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataExtractor.swift; sourceTree = "<group>"; };
 		DDEFF2851D6D8D8F0028BC86 /* Pinge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pinge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDEFF2881D6D8D8F0028BC86 /* Pinge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Pinge.h; sourceTree = "<group>"; };
 		DDEFF28A1D6D8D8F0028BC86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -59,7 +60,6 @@
 		DDEFF2961D6D8D8F0028BC86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DDEFF29F1D6D8E430028BC86 /* Pinge.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = Pinge.swift; sourceTree = "<group>"; tabWidth = 4; usesTabs = 1; };
 		DDEFF2A11D6D917F0028BC86 /* libpng-test.pinge */ = {isa = PBXFileReference; lastKnownFileType = file; name = "libpng-test.pinge"; path = "TestImages/libpng-test.pinge"; sourceTree = "<group>"; };
-		DDF745B81D85DE1B007978F2 /* TypeExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,7 +140,7 @@
 				DDEFF28A1D6D8D8F0028BC86 /* Info.plist */,
 				DD3D552C1D731D0200993AA8 /* Chunks */,
 				DD3D55261D72F86F00993AA8 /* DataTypes.swift */,
-				DDF745B81D85DE1B007978F2 /* TypeExtensions.swift */,
+				DDB526111D8967CB005D0ECA /* DataExtractor.swift */,
 			);
 			path = Pinge;
 			sourceTree = "<group>";
@@ -282,6 +282,7 @@
 			files = (
 				DD3D55341D74539200993AA8 /* module.modulemap in Sources */,
 				DD3D55241D72F6A200993AA8 /* PLTEChunk.swift in Sources */,
+				DDB526121D8967CB005D0ECA /* DataExtractor.swift in Sources */,
 				DDEFF2A01D6D8E430028BC86 /* Pinge.swift in Sources */,
 				DD3D552B1D731BCD00993AA8 /* IDATChunk.swift in Sources */,
 				DD3D55271D72F86F00993AA8 /* DataTypes.swift in Sources */,
@@ -289,7 +290,6 @@
 				DDA1D6DE1D6E3AEC0025AD63 /* IHDRChunk.swift in Sources */,
 				DDA1D6DC1D6E3A0B0025AD63 /* PNGChunk.swift in Sources */,
 				DD3D55311D7452C800993AA8 /* Zlib.swift in Sources */,
-				DDF745B91D85DE1B007978F2 /* TypeExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
