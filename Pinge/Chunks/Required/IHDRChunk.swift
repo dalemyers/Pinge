@@ -76,50 +76,42 @@ open class IHDRChunk: PNGChunk {
   }
 
   private func extractData() -> Bool {
-    var offset: Int = 0
+    let data = DataExtractor(data: Data(bytes: dataBytes))
 
-    let data = Data(bytes: dataBytes)
-
-    guard let width = data.uint32(fromOffset: offset, reverseBytes: true) else {
+    guard let width = data.nextUInt32(reverseBytes: true) else {
       return false
     }
     self.width = Int(width)
-    offset += 4
 
-    guard let height = data.uint32(fromOffset: offset, reverseBytes: true) else {
+    guard let height = data.nextUInt32(reverseBytes: true) else {
       return false
     }
     self.height = Int(height)
-    offset += 4
 
-    guard let bitDepth = data.uint8(fromOffset: offset) else {
+    guard let bitDepth = data.nextUInt8() else {
       return false
     }
     self.bitDepth = Int(bitDepth)
-    offset += 1
 
-    guard let colorType = data.uint8(fromOffset: offset) else {
+    guard let colorType = data.nextUInt8() else {
       return false
     }
     guard ColorType.isValidValue(Int(colorType)) else {
       return false
     }
     self.colorType = ColorType(rawValue: Int(colorType))
-    offset += 1
 
-    guard let compressionMethod = data.uint8(fromOffset: offset) else {
+    guard let compressionMethod = data.nextUInt8() else {
       return false
     }
     self.compressionMethod = Int(compressionMethod)
-    offset += 1
 
-    guard let filterMethod = data.uint8(fromOffset: offset) else {
+    guard let filterMethod = data.nextUInt8() else {
       return false
     }
     self.filterMethod = Int(filterMethod)
-    offset += 1
 
-    guard let interlaceMethod = data.uint8(fromOffset: offset) else {
+    guard let interlaceMethod = data.nextUInt8() else {
       return false
     }
     guard InterlaceMethod.isValidValue(Int(interlaceMethod)) else {
