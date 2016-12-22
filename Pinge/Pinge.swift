@@ -64,7 +64,7 @@ class Pinge {
 			guard let filterTypeValue: Byte = idatDataStream.nextUInt8() else {
 				return false
 			}
-			let filterType = FilterType(rawValue: Int(filterTypeValue))
+			let filterType = FilterType(rawValue: Int(filterTypeValue))!
 
 			let bppNonRounded = Double(chunkIHDR.bitDepth.rawValue * chunkIHDR.colorType.samples()) / 8.0
 			let bpp = Int(ceil(Double(bppNonRounded)))
@@ -83,12 +83,12 @@ class Pinge {
 
 			idatDataStream.copyNextBytes(to: &currentScanline, length: scanlineLength)
 
-			if filterType == .none {
+			switch filterType {
+			case .none:
+				currentRaw = currentScanline
+				break
 
-				unfilteredData.append(contentsOf: currentScanline)
-				return true
-
-			} else if filterType == .sub {
+			case .sub:
 
 				for i in 0..<scanlineLength {
 					if i - bpp < 0 {
@@ -98,14 +98,18 @@ class Pinge {
 					}
 				}
 
-			} else if filterType == .up {
+				break
+
+			case .up:
 
 				// TODO test
 				for i in 0..<scanlineLength {
 					currentRaw[i] = Byte((UInt(currentScanline[i]) + UInt(priorRaw[i])) % 256)
 				}
 
-			} else if filterType == .average {
+				break
+
+			case .average:
 
 				// TODO test
 				for i in 0..<scanlineLength {
@@ -120,7 +124,9 @@ class Pinge {
 					}
 				}
 
-			} else if filterType == .paeth {
+				break
+
+			case .paeth:
 
 				func paethPredictor(_ left: UInt, upper: UInt, upperLeft: UInt) -> Byte {
 
