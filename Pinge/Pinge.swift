@@ -6,8 +6,6 @@ import Foundation
 
 class Pinge {
 
-	typealias Byte = UInt8
-
 	struct Constants {
 		static let pngHeader: [Byte] = [0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A]
 		static let headerLength: Int = 8

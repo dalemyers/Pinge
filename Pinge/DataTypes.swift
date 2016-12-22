@@ -4,6 +4,7 @@
 
 import Foundation
 
+public typealias Byte = UInt8
 public enum ColorType: Int {
   case greyscale = 0
   case trueColor = 2
