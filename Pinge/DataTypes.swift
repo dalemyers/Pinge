@@ -48,3 +48,15 @@ public enum FilterType: Int {
   case average = 3
   case paeth = 4
 }
+
+public enum BitDepth: Int {
+  case depth1 = 1
+  case depth2 = 2
+  case depth4 = 4
+  case depth8 = 8
+  case depth16 = 16
+
+  static func isValid(depth: UInt8) -> Bool {
+    return [1,2,4,8,16].contains(depth)
+  }
+}

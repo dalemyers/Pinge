@@ -66,9 +66,9 @@ class Pinge {
 			}
 			let filterType = FilterType(rawValue: Int(filterTypeValue))
 
-			let bppNonRounded = Double(chunkIHDR.bitDepth * chunkIHDR.colorType.samples()) / 8.0
+			let bppNonRounded = Double(chunkIHDR.bitDepth.rawValue * chunkIHDR.colorType.samples()) / 8.0
 			let bpp = Int(ceil(Double(bppNonRounded)))
-			let bitDepth = Double(chunkIHDR.bitDepth!)
+			let bitDepth = Double(chunkIHDR.bitDepth.rawValue)
 			let samples = Double(chunkIHDR.colorType.samples())
 			let lineWidth = Double(chunkIHDR.width!)
 			let scanlineLength = Int((bitDepth * samples * lineWidth / 8.0) + 0.5)
@@ -211,7 +211,7 @@ class Pinge {
 		// The number of palette entries must not exceed the range that can be
 		// represented in the image bit depth (for example, 2^4 = 16 for a bit
 		// depth of 4)
-		guard chunkPLTE == nil || chunkPLTE!.paletteEntries.count <= Int(pow(2.0, Double(chunkIHDR.bitDepth))) else {
+		guard chunkPLTE == nil || chunkPLTE!.paletteEntries.count <= Int(pow(2.0, Double(chunkIHDR.bitDepth.rawValue))) else {
 			return false
 		}
 
