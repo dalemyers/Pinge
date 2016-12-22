@@ -4,7 +4,7 @@
 
 import Foundation
 
-class Pinge {
+public class Pinge {
 
 	struct Constants {
 		static let pngHeader: [Byte] = [0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A]
@@ -21,40 +21,119 @@ class Pinge {
 	private var chunkPLTE: PLTEChunk?
 	private var idatChunks = [IDATChunk]()
 	private var chunkIEND: IENDChunk!
+	private var decodedData: Data?
 
 
-	init?(data: Data) {
+	public init?(data: Data) {
 		self.data = DataExtractor(data: data)
 		guard validateHeader() else {
 			return nil
 		}
+	}
 
+	public func load() -> Bool {
 		guard readChunks() else {
-			return nil
+			return false
 		}
+		return true
+	}
 
+	public func validate() -> Bool {
 		guard consolidateIDATChunks() else {
-			return nil
-		}
-
-		guard unfilterIDATChunks() else {
-			return nil
+			return false
 		}
 
 		guard validateChunks() else {
-			return nil
+			return false
 		}
+
+		return true
 	}
 
-	private func unfilterIDATChunks() -> Bool {
+	public func decode() -> Bool {
+		guard let bytes = unfilterIDATChunks() else {
+			return false
+		}
+
+		var outputData = Data()
+
+		// We have the raw bytes, along with any chunks we need to turn these
+		// into an actual ARGB array.
+
+		for byte in bytes {
+			switch chunkIHDR.bitDepth! {
+			case .depth1:
+				let decodedBytes = bitFieldToBytes(byte: byte)
+				for decodedByte in decodedBytes {
+					outputData.append(255) // Alpha
+					outputData.append(decodedByte * 255) // R
+					outputData.append(decodedByte * 255) // G
+					outputData.append(decodedByte * 255) // B
+				}
+			case .depth2:
+				continue
+			case .depth4:
+				continue
+			case .depth8:
+				continue
+			case .depth16:
+				continue
+			}
+		}
+
+		decodedData = outputData
+
+		return true
+	}
+
+	public func imageData() -> Data? {
+		return decodedData
+	}
+
+	public func image() -> UIImage? {
+		guard let imageData = decodedData else {
+			return nil
+		}
+
+		let imageWidth = chunkIHDR.width!
+		let imageHeight = chunkIHDR.height!
+
+		guard imageWidth * imageHeight * 4 == imageData.count else {
+			return nil
+		}
+
+		guard let provider: CGDataProvider = CGDataProvider(data: NSData(data: imageData) as CFData) else {
+			return nil
+		}
+		
+		guard let cgimage: CGImage = CGImage(
+			width: imageWidth,
+			height: imageHeight,
+			bitsPerComponent: 8,
+			bitsPerPixel: 32,
+			bytesPerRow: imageWidth * 4,
+			space: CGColorSpaceCreateDeviceRGB(),
+			bitmapInfo: CGBitmapInfo(rawValue: CGImageAlphaInfo.first.rawValue),
+			provider: provider,
+			decode: nil,
+			shouldInterpolate: true,
+			intent: .defaultIntent
+			) else {
+				return nil
+		}
+
+		return UIImage(cgImage: cgimage)
+	}
+
+	private func unfilterIDATChunks() -> [Byte]? {
 
 		guard let chunkIHDR = chunkIHDR else {
-			return false
+			return nil
 		}
 
 		guard chunkIHDR.interlaceMethod == InterlaceMethod.none else {
 			// TODO support ADAM7
-			return false
+			return nil
 		}
 
 		var unfilteredData = [Byte]()
@@ -62,7 +141,7 @@ class Pinge {
 
 		while idatDataStream.remainingData() {
 			guard let filterTypeValue: Byte = idatDataStream.nextUInt8() else {
-				return false
+				return nil
 			}
 			let filterType = FilterType(rawValue: Int(filterTypeValue))!
 
@@ -74,7 +153,7 @@ class Pinge {
 			let scanlineLength = Int((bitDepth * samples * lineWidth / 8.0) + 0.5)
 
 			guard idatDataStream.bytesRemaining() >= scanlineLength else {
-				return false
+				return nil
 			}
 
 			var priorRaw = [Byte](repeating: 0, count: scanlineLength)
@@ -161,6 +240,8 @@ class Pinge {
 						))) % 256)
 					}
 				}
+
+				break
 				
 			}
 
@@ -168,7 +249,7 @@ class Pinge {
 			priorRaw = currentRaw
 		}
 
-		return true
+		return unfilteredData
 	}
 
 	private func consolidateIDATChunks() -> Bool {
