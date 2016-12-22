@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD209C371E0BFCE100C553D3 /* basn0g16-16_bit_grayscale.pinge in Resources */ = {isa = PBXBuildFile; fileRef = DD209C321E0BFCE100C553D3 /* basn0g16-16_bit_grayscale.pinge */; };
+		DD209C381E0BFCE100C553D3 /* basn0g08-8_bit_grayscale.pinge in Resources */ = {isa = PBXBuildFile; fileRef = DD209C331E0BFCE100C553D3 /* basn0g08-8_bit_grayscale.pinge */; };
+		DD209C391E0BFCE100C553D3 /* basn0g01-black_and_white.pinge in Resources */ = {isa = PBXBuildFile; fileRef = DD209C341E0BFCE100C553D3 /* basn0g01-black_and_white.pinge */; };
+		DD209C3A1E0BFCE100C553D3 /* basn0g02-2_bit_grayscale.pinge in Resources */ = {isa = PBXBuildFile; fileRef = DD209C351E0BFCE100C553D3 /* basn0g02-2_bit_grayscale.pinge */; };
+		DD209C3B1E0BFCE100C553D3 /* basn0g04-4_bit_grayscale.pinge in Resources */ = {isa = PBXBuildFile; fileRef = DD209C361E0BFCE100C553D3 /* basn0g04-4_bit_grayscale.pinge */; };
 		DD3D55241D72F6A200993AA8 /* PLTEChunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3D55231D72F6A200993AA8 /* PLTEChunk.swift */; };
 		DD3D55271D72F86F00993AA8 /* DataTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3D55261D72F86F00993AA8 /* DataTypes.swift */; };
 		DD3D552B1D731BCD00993AA8 /* IDATChunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3D552A1D731BCD00993AA8 /* IDATChunk.swift */; };
@@ -14,9 +19,6 @@
 		DD3D55311D7452C800993AA8 /* Zlib.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3D55301D7452C800993AA8 /* Zlib.swift */; };
 		DD3D55341D74539200993AA8 /* module.modulemap in Sources */ = {isa = PBXBuildFile; fileRef = DD3D55331D74539200993AA8 /* module.modulemap */; };
 		DD3D55371D746F2C00993AA8 /* IENDChunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3D55361D746F2C00993AA8 /* IENDChunk.swift */; };
-		DD3D55391D747A1200993AA8 /* mspaint.pinge in Resources */ = {isa = PBXBuildFile; fileRef = DD3D55381D747A1200993AA8 /* mspaint.pinge */; };
-		DD3D553C1D747AAA00993AA8 /* photoshop-interlaced.pinge in Resources */ = {isa = PBXBuildFile; fileRef = DD3D553A1D747AAA00993AA8 /* photoshop-interlaced.pinge */; };
-		DD3D553D1D747AAA00993AA8 /* photoshop.pinge in Resources */ = {isa = PBXBuildFile; fileRef = DD3D553B1D747AAA00993AA8 /* photoshop.pinge */; };
 		DDA1D6DC1D6E3A0B0025AD63 /* PNGChunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA1D6DB1D6E3A0B0025AD63 /* PNGChunk.swift */; };
 		DDA1D6DE1D6E3AEC0025AD63 /* IHDRChunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA1D6DD1D6E3AEC0025AD63 /* IHDRChunk.swift */; };
 		DDB526121D8967CB005D0ECA /* DataExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB526111D8967CB005D0ECA /* DataExtractor.swift */; };
@@ -38,6 +40,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DD209C321E0BFCE100C553D3 /* basn0g16-16_bit_grayscale.pinge */ = {isa = PBXFileReference; lastKnownFileType = file; name = "basn0g16-16_bit_grayscale.pinge"; path = "TestImages/basn0g16-16_bit_grayscale.pinge"; sourceTree = "<group>"; };
+		DD209C331E0BFCE100C553D3 /* basn0g08-8_bit_grayscale.pinge */ = {isa = PBXFileReference; lastKnownFileType = file; name = "basn0g08-8_bit_grayscale.pinge"; path = "TestImages/basn0g08-8_bit_grayscale.pinge"; sourceTree = "<group>"; };
+		DD209C341E0BFCE100C553D3 /* basn0g01-black_and_white.pinge */ = {isa = PBXFileReference; lastKnownFileType = file; name = "basn0g01-black_and_white.pinge"; path = "TestImages/basn0g01-black_and_white.pinge"; sourceTree = "<group>"; };
+		DD209C351E0BFCE100C553D3 /* basn0g02-2_bit_grayscale.pinge */ = {isa = PBXFileReference; lastKnownFileType = file; name = "basn0g02-2_bit_grayscale.pinge"; path = "TestImages/basn0g02-2_bit_grayscale.pinge"; sourceTree = "<group>"; };
+		DD209C361E0BFCE100C553D3 /* basn0g04-4_bit_grayscale.pinge */ = {isa = PBXFileReference; lastKnownFileType = file; name = "basn0g04-4_bit_grayscale.pinge"; path = "TestImages/basn0g04-4_bit_grayscale.pinge"; sourceTree = "<group>"; };
 		DD3D55231D72F6A200993AA8 /* PLTEChunk.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PLTEChunk.swift; path = Chunks/Required/PLTEChunk.swift; sourceTree = "<group>"; };
 		DD3D55261D72F86F00993AA8 /* DataTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTypes.swift; sourceTree = "<group>"; };
 		DD3D552A1D731BCD00993AA8 /* IDATChunk.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IDATChunk.swift; path = Chunks/Required/IDATChunk.swift; sourceTree = "<group>"; };
@@ -46,9 +53,6 @@
 		DD3D55331D74539200993AA8 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; name = module.modulemap; path = zlib/module.modulemap; sourceTree = "<group>"; };
 		DD3D55351D7453BA00993AA8 /* include.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = include.h; path = zlib/include.h; sourceTree = "<group>"; };
 		DD3D55361D746F2C00993AA8 /* IENDChunk.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IENDChunk.swift; path = Chunks/Required/IENDChunk.swift; sourceTree = "<group>"; };
-		DD3D55381D747A1200993AA8 /* mspaint.pinge */ = {isa = PBXFileReference; lastKnownFileType = file; name = mspaint.pinge; path = TestImages/mspaint.pinge; sourceTree = "<group>"; };
-		DD3D553A1D747AAA00993AA8 /* photoshop-interlaced.pinge */ = {isa = PBXFileReference; lastKnownFileType = file; name = "photoshop-interlaced.pinge"; path = "TestImages/photoshop-interlaced.pinge"; sourceTree = "<group>"; };
-		DD3D553B1D747AAA00993AA8 /* photoshop.pinge */ = {isa = PBXFileReference; lastKnownFileType = file; name = photoshop.pinge; path = TestImages/photoshop.pinge; sourceTree = "<group>"; };
 		DDA1D6DB1D6E3A0B0025AD63 /* PNGChunk.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PNGChunk.swift; path = Chunks/PNGChunk.swift; sourceTree = "<group>"; };
 		DDA1D6DD1D6E3AEC0025AD63 /* IHDRChunk.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IHDRChunk.swift; path = Chunks/Required/IHDRChunk.swift; sourceTree = "<group>"; };
 		DDB526111D8967CB005D0ECA /* DataExtractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataExtractor.swift; sourceTree = "<group>"; };
@@ -82,6 +86,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DD209C3C1E0BFCEA00C553D3 /* Basic Formats */ = {
+			isa = PBXGroup;
+			children = (
+				DD209C3D1E0BFCF600C553D3 /* Greyscale */,
+			);
+			name = "Basic Formats";
+			sourceTree = "<group>";
+		};
+		DD209C3D1E0BFCF600C553D3 /* Greyscale */ = {
+			isa = PBXGroup;
+			children = (
+				DD209C321E0BFCE100C553D3 /* basn0g16-16_bit_grayscale.pinge */,
+				DD209C331E0BFCE100C553D3 /* basn0g08-8_bit_grayscale.pinge */,
+				DD209C341E0BFCE100C553D3 /* basn0g01-black_and_white.pinge */,
+				DD209C351E0BFCE100C553D3 /* basn0g02-2_bit_grayscale.pinge */,
+				DD209C361E0BFCE100C553D3 /* basn0g04-4_bit_grayscale.pinge */,
+			);
+			name = Greyscale;
+			sourceTree = "<group>";
+		};
 		DD3D55251D72F6A900993AA8 /* Required Chunks */ = {
 			isa = PBXGroup;
 			children = (
@@ -158,9 +182,7 @@
 		DDEFF2A31D6D91820028BC86 /* Test Images */ = {
 			isa = PBXGroup;
 			children = (
-				DD3D553A1D747AAA00993AA8 /* photoshop-interlaced.pinge */,
-				DD3D553B1D747AAA00993AA8 /* photoshop.pinge */,
-				DD3D55381D747A1200993AA8 /* mspaint.pinge */,
+				DD209C3C1E0BFCEA00C553D3 /* Basic Formats */,
 				DDEFF2A11D6D917F0028BC86 /* libpng-test.pinge */,
 			);
 			name = "Test Images";
@@ -266,10 +288,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD3D553D1D747AAA00993AA8 /* photoshop.pinge in Resources */,
-				DD3D55391D747A1200993AA8 /* mspaint.pinge in Resources */,
+				DD209C371E0BFCE100C553D3 /* basn0g16-16_bit_grayscale.pinge in Resources */,
+				DD209C3B1E0BFCE100C553D3 /* basn0g04-4_bit_grayscale.pinge in Resources */,
+				DD209C381E0BFCE100C553D3 /* basn0g08-8_bit_grayscale.pinge in Resources */,
 				DDEFF2A21D6D917F0028BC86 /* libpng-test.pinge in Resources */,
-				DD3D553C1D747AAA00993AA8 /* photoshop-interlaced.pinge in Resources */,
+				DD209C3A1E0BFCE100C553D3 /* basn0g02-2_bit_grayscale.pinge in Resources */,
+				DD209C391E0BFCE100C553D3 /* basn0g01-black_and_white.pinge in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
