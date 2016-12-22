@@ -21,7 +21,7 @@ class PingeTests: XCTestCase {
 
 		// If we leave the image as PNG, Apple compress them using their special
 		// encoder: http://iphonedevwiki.net/index.php/CgBI_file_format
-		guard let libpngTestPath = bundle.path(forResource: "photoshop", ofType:"pinge") else {
+		guard let libpngTestPath = bundle.path(forResource: "basn0g01-black_and_white", ofType:"pinge") else {
 			libpngTest = Data()
 			return
 		}
