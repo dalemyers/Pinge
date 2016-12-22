@@ -4,8 +4,6 @@
 
 import Foundation
 
-public typealias Byte = UInt8
-
 open class PNGChunk {
 
   internal var identifier: [Byte]
