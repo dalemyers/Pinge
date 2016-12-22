@@ -8,7 +8,7 @@ open class IHDRChunk: PNGChunk {
 
   public var width: Int!
   public var height: Int!
-  public var bitDepth: Int!
+  public var bitDepth: BitDepth!
   public var colorType: ColorType!
   public var compressionMethod: Int!
   public var filterMethod: Int!
@@ -51,23 +51,23 @@ open class IHDRChunk: PNGChunk {
 
     switch colorType! {
     case .greyscale:
-      guard [1,2,4,8,16].contains(bitDepth) else {
+      guard [1,2,4,8,16].contains(bitDepth.rawValue) else {
         return false
       }
     case .trueColor:
-      guard [8,16].contains(bitDepth) else {
+      guard [8,16].contains(bitDepth.rawValue) else {
         return false
       }
     case .indexedColor:
-      guard [1,2,4,8].contains(bitDepth) else {
+      guard [1,2,4,8].contains(bitDepth.rawValue) else {
         return false
       }
     case .greyscaleWithAlpha:
-      guard [8,16].contains(bitDepth) else {
+      guard [8,16].contains(bitDepth.rawValue) else {
         return false
       }
     case .truecolorWithAlpha:
-      guard [8,16].contains(bitDepth) else {
+      guard [8,16].contains(bitDepth.rawValue) else {
         return false
       }
     }
@@ -88,10 +88,10 @@ open class IHDRChunk: PNGChunk {
     }
     self.height = Int(height)
 
-    guard let bitDepth = data.nextUInt8() else {
+    guard let bitDepth = data.nextUInt8(), BitDepth.isValid(depth: bitDepth) else {
       return false
     }
-    self.bitDepth = Int(bitDepth)
+    self.bitDepth = BitDepth(rawValue: Int(bitDepth))
 
     guard let colorType = data.nextUInt8() else {
       return false
