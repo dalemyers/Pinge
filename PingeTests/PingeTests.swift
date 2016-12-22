@@ -35,8 +35,28 @@ class PingeTests: XCTestCase {
 	}
 
 	func testHeaders() {
-		let png = Pinge(data: libpngTest)
-		XCTAssert(png != nil)
+		guard let png = Pinge(data: libpngTest) else {
+			XCTFail()
+			return
+		}
+		XCTAssertTrue(png.load())
+		XCTAssertTrue(png.validate())
+	}
+
+	func testGetData() {
+		guard let png = Pinge(data: libpngTest) else {
+			XCTFail()
+			return
+		}
+		XCTAssertTrue(png.load())
+		XCTAssertTrue(png.validate())
+		XCTAssertTrue(png.decode())
+
+		XCTAssert(png.imageData() != nil)
+
+		let image = png.image()
+
+		print("Nothing \(image)")
 	}
 
 	func testPerformanceExample() {

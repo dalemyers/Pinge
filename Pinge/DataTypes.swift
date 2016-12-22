@@ -5,6 +5,18 @@
 import Foundation
 
 public typealias Byte = UInt8
+
+public func bitFieldToBytes(byte: Byte) -> [Byte] {
+  var bytes = [UInt8](repeating: 0, count: 8)
+
+  for index in 0..<8 {
+    let bit = (byte >> UInt8(7 - index)) & 1
+    bytes[index] = bit
+  }
+
+  return bytes
+}
+
 public enum ColorType: Int {
   case greyscale = 0
   case trueColor = 2
